@@ -24,4 +24,35 @@ public class IndexController {
 	public String list() {
 		return "product/list";
 	}
+	
+	@RequestMapping("/detail")
+	public String detail() {
+		return "product/detail";
+	}
+	
+	@RequestMapping("/cart")
+	public String cart() {
+		return "cart/view";
+	}
+	
+	@RequestMapping("/faq")
+	public String faq() {
+		return "home/faq";
+	}
+	
+	@RequestMapping("/contact")
+	public String contact() {
+		return "home/contact";
+	}
+	
+	@RequestMapping("/blog")
+	public String blog() {
+		return "blog/blog";
+	}
+	
+	@RequestMapping("/blogdetail")
+	public String blogdetail() {
+		return "blog/blog-detail";
+	}
+	
 }
