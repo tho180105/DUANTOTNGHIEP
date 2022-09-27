@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-src/main/java/store/com/Entity
+src/main/java/store/com/Entity/Account.java
