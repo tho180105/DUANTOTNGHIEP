@@ -29,18 +29,18 @@ import lombok.Setter;
 @Table(name = "Account")
 public class Account implements Serializable{
 	@Id
-	String accountId;
+	String accountid;
 	String password;
 	String email;
 	String avatar;
 	Integer coin;
-	String phoneNumber;
+	String phonenumber;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "CreateDate")
+	@Column(name = "Createdate")
 	Date createDate = new Date();
 	String status;
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="RoleId")
+	@JoinColumn(name="Roleid")
 	Role role;
 	@JsonIgnore
 	@OneToMany(mappedBy="account")
