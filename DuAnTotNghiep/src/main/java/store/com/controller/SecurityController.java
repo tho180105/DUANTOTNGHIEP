@@ -15,4 +15,8 @@ public class SecurityController {
 	public String login() {
 		return "security/login";
 	}
+	
+	public String asd(){
+		return "asd";
+	}
 }
