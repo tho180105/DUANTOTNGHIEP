@@ -1071,39 +1071,49 @@ ol {
 }
 
 .filter-control {
-	text-align: center;
-	margin-bottom: 45px;
-	padding-top: 32px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+	padding-top: 6px;
+	
 }
+
 
 .filter-control ul li {
 	list-style: none;
 	display: inline-block;
-	font-size: 20px;
+}
+
+.filter-control ul li a{
+	font-size: 25px;
 	color: #b2b2b2;
 	margin-right: 22px;
 	position: relative;
 	cursor: pointer;
+	font-weight: bold;
 }
 
-.filter-control ul li.active {
+.filter-control ul li a.active {
 	color: #171717;
 }
 
-.filter-control ul li.active:before {
+.filter-control ul li a.active:before {
 	opacity: 1;
+	
 }
 
-.filter-control ul li:before {
+.filter-control ul li a::before {
 	position: absolute;
 	left: 0;
 	bottom: -3px;
 	width: 100%;
-	height: 2px;
-	background: #171717;
+	height: 3px;
+	background: rgb(231, 171, 60);
 	content: "";
 	opacity: 0;
 }
+
 
 .filter-control ul li:last-child {
 	margin-right: 0;
