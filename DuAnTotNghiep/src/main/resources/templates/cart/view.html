@@ -1,5 +1,7 @@
+	
+
 <div xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic (~{::main})}">
-	<main id="main">
+	<main id="main" ng-controller="cart-ctrl">
 	<!-- Hero Section Begin -->
 	    <!-- Breadcrumb Section Begin -->
     <div class="breacrumb-section">
@@ -24,6 +26,9 @@
            padding-top: 5px !important;
            padding-bottom: 5px   !important;
         }
+        .checkboxSelect{
+            transform: scale(1.5);
+        }
         /* style="margin: 0 !important;padding: 0 !important" */
 
     </style>
@@ -36,54 +41,44 @@
                         <table class="col-8">
                             <thead>
                                 <tr >
-                                    <th >Image</th>
-                                    <th class="p-name">Product Name</th>
+                                    <th style="padding-left: 20px;padding-right: 20px !important ;"><input class="checkboxSelect" ng-click="selectALlItem($event)"  type="checkbox"></th>
+                                    <th style="width: 10%">Image</th>
+                                    <th class="p-name text-center">Product Name</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th><i class="ti-close"></i></th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="cart-pic first-row"><img height="80px" src="img/cart-page/product-1.jpg" alt=""></td>
-                                    <td class="cart-title first-row">
-                                        <h5>Pure Pineapple</h5>
+                                <tr ng-repeat="item in detailCarts" >
+                                    <td><input class="checkboxSelect" ng-click="calculateFee()" type="checkbox" value="{{item.productRepository.product.sellingprice*item.quantity}}" name="" id=""></td>
+                                    <td style="width: 10%" class="cart-pic first-row"><img height="100%" src="img/cart-page/product-1.jpg" alt=""></td>
+                                    <td class="cart-title first-row text-center" >
+                                        <h5>{{item.productRepository.product.productname}} - {{item.productRepository.size.sizeid}}</h5>
                                     </td>
-                                    <td class="p-price first-row">$60.00</td>
+                                    <td class="p-price first-row">{{item.productRepository.product.sellingprice}}</td>
                                     <td class="qua-col first-row">
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                                <input type="text" value="1">
+                                                <span class="dec qtybtn" ng-click="decreaseQuantity($event)" detailCartId="{{item.detailcartid}}"  >-</span>
+                                                <input type="text"  value="{{item.quantity}}">
+                                                <span class="inc qtybtn"  ng-click="increaseQuantity($event)"  detailCartId="{{item.detailcartid}}" >+</span>
                                             </div>
                                         </div>
+                                      
                                     </td>
-                                    <td class="total-price first-row">$60.00</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
-                                </tr>
-                                <tr >
-                                    <td class="cart-pic first-row"><img height="80px" src="img/cart-page/product-1.jpg" alt=""></td>
-                                    <td class="cart-title first-row">
-                                        <h5>Pure Pineapple</h5>
-                                    </td>
-                                    <td class="p-price first-row">$60.00</td>
-                                    <td class="qua-col first-row">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="total-price first-row">$60.00</td>
-                                    <td class="close-td first-row"><i class="ti-close"></i></td>
+                                    <td class="total-price first-row">{{item.productRepository.product.sellingprice*item.quantity}}</td>
+                                    <td class="close-td first-row" ng-click="delete(item.detailcartid)"><i class="ti-close"></i></td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="col-4">
-                            <div class="proceed-checkout">
+                        <div class="col-4" >
+                            <div class="proceed-checkout" style="position: sticky;top: 0;">
                                 <ul>
-                                    <li class="subtotal">Subtotal <span>$240.00</span></li>
-                                    <li class="cart-total">Total <span>$240.00</span></li>
+                                    <li class="subtotal">Subtotal <span>${{totalMoney}}</span></li>
+                                    <li class="subtotal">Discount <span>0</span></li>
+                                    <li class="cart-total">Total <span>${{totalMoney}}</span></li>
                                 </ul>
                                 <a href="#" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
@@ -93,7 +88,7 @@
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                <a href="#" class="primary-btn up-cart">Update cart</a>
+                                <a  class="primary-btn up-cart" ng-click="create(4)">Update cart</a>
                             </div>
                             <div class="discount-coupon">
                                 <h6>Discount Codes</h6>
@@ -110,6 +105,6 @@
         </div>
     </section>
     <!-- Shopping Cart Section End -->
-	    
+   
     </main>
 </div>

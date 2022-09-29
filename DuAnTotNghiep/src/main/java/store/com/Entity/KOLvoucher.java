@@ -17,16 +17,64 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "KOLvoucher")
+@Table(name="kolvoucher")
 public class KOLvoucher implements Serializable{
 	@Id
-	Integer KOLvoucherId;
+	Integer kolvoucherid;
 
 	@ManyToOne
-	@JoinColumn(name = "KOLId")
-	KOL KOL;
+	@JoinColumn(name = "kolid")
+	KOL kol;
 	
 	@ManyToOne
-	@JoinColumn(name = "VoucherId")
+	@JoinColumn(name = "Voucherid")
 	Voucher voucher;
+
+	
+	public KOLvoucher() {
+		super();
+	}
+
+	
+
+	public KOLvoucher(Integer kolvoucherid, KOL kol, Voucher voucher) {
+		super();
+		this.kolvoucherid = kolvoucherid;
+		this.kol = kol;
+		this.voucher = voucher;
+	}
+
+
+
+	public Integer getKolvoucherid() {
+		return kolvoucherid;
+	}
+
+
+
+	public void setKolvoucherid(Integer kolvoucherid) {
+		this.kolvoucherid = kolvoucherid;
+	}
+
+
+
+	public KOL getKol() {
+		return kol;
+	}
+
+
+
+	public void setKol(KOL kol) {
+		this.kol = kol;
+	}
+
+
+
+	public Voucher getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(Voucher voucher) {
+		this.voucher = voucher;
+	}
 }

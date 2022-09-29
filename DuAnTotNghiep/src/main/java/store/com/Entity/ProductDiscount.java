@@ -21,26 +21,91 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "ProductDiscount")
+@Table(name="Productdiscount")
 public class ProductDiscount implements Serializable{
 	@Id
-	Integer productDiscountId;
+	Integer productdiscountid;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "StartDate")
-	Date startDate;
+	@Column(name = "Startdate")
+	Date startdate;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "EndDate")
-	Date endDate;
+	@Column(name = "Enddate")
+	Date enddate;
 	
-	Float disCount;
+	Float discount;
 
 	@ManyToOne
-	@JoinColumn(name = "ProductId")
+	@JoinColumn(name = "Productid")
 	Product product;
 	
 	@ManyToOne
-	@JoinColumn(name = "AccountId")
+	@JoinColumn(name = "Accountid")
 	Account account;
+
+	public ProductDiscount(Integer productdiscountid, Date startdate, Date enddate, Float discount, Product product,
+			Account account) {
+		super();
+		this.productdiscountid = productdiscountid;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		this.discount = discount;
+		this.product = product;
+		this.account = account;
+	}
+
+	public ProductDiscount() {
+		super();
+	}
+
+	public Integer getProductdiscountid() {
+		return productdiscountid;
+	}
+
+	public void setProductdiscountid(Integer productdiscountid) {
+		this.productdiscountid = productdiscountid;
+	}
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public Float getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(Float discount) {
+		this.discount = discount;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	
 }

@@ -26,23 +26,44 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "Account")
 public class Account implements Serializable{
 	@Id
-	String accountId;
+	String accountid;
 	String password;
 	String email;
 	String avatar;
 	Integer coin;
-	String phoneNumber;
+	String phonenumber;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "CreateDate")
-	Date createDate = new Date();
+	@Column(name = "Createdate")
+	Date createdate = new Date();
+	String status;
+	@ManyToOne
+	@JoinColumn(name="Roleid")
+	Role role;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<Rate> rates ;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<Response> responses ;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<DetailCart> detailCarts ;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<Address>  addresses ;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<Orders>  orders ;
+	@JsonIgnore
+	@OneToMany(mappedBy="account")
+	List<ProductDiscount>  productDiscounts ;
 	public String getAccountId() {
-		return accountId;
+		return accountid;
 	}
 	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+		this.accountid = accountId;
 	}
 	public String getPassword() {
 		return password;
@@ -69,16 +90,16 @@ public class Account implements Serializable{
 		this.coin = coin;
 	}
 	public String getPhoneNumber() {
-		return phoneNumber;
+		return phonenumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setPhoneNumber(String phonenumber) {
+		this.phonenumber = phonenumber;
 	}
 	public Date getCreateDate() {
-		return createDate;
+		return createdate;
 	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
+	public void setCreateDate(Date createdate) {
+		this.createdate = createdate;
 	}
 	public String getStatus() {
 		return status;
@@ -128,40 +149,19 @@ public class Account implements Serializable{
 	public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
 		this.productDiscounts = productDiscounts;
 	}
-	String status;
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="RoleId")
-	Role role;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<Rate> rates ;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<Response> responses ;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<DetailCart> detailCarts ;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<Address>  addresses ;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<Orders>  orders ;
-	@JsonIgnore
-	@OneToMany(mappedBy="account")
-	List<ProductDiscount>  productDiscounts ;
-	public Account(String accountId, String password, String email, String avatar, Integer coin, String phoneNumber,
-			Date createDate, String status, Role role, List<Rate> rates, List<Response> responses,
+	
+	public Account(String accountId, String password, String email, String avatar, Integer coin, String phonenumber,
+			Date createdate, String status, Role role, List<Rate> rates, List<Response> responses,
 			List<DetailCart> detailCarts, List<Address> addresses, List<Orders> orders,
 			List<ProductDiscount> productDiscounts) {
 		super();
-		this.accountId = accountId;
+		this.accountid = accountId;
 		this.password = password;
 		this.email = email;
 		this.avatar = avatar;
 		this.coin = coin;
-		this.phoneNumber = phoneNumber;
-		this.createDate = createDate;
+		this.phonenumber = phonenumber;
+		this.createdate = createdate;
 		this.status = status;
 		this.role = role;
 		this.rates = rates;
