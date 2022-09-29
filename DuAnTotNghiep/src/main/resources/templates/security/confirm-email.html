@@ -23,30 +23,13 @@
 					<div class="col-lg-6 offset-lg-3">
 						<div class="register-form">
 							<h2>Register</h2>
-							<form action="/register/check" method="post" th:object="${sv}" >
+							<form action="/register/confirmCode"  >
 								 <div class="group-input">
-									<label for="username">Username</label> <input
-										type="text" id="username" th:field="*{accountid}">
-								</div> 
-								
-							 	<div class="group-input">
-									<label for="pass">Password *</label> <input type="password"
-										id="pass" th:field="*{password}">
-								</div>
-								<div class="group-input">
-									<label for="con-pass">Confirm Password *</label> <input
-										type="password" id="con-pass" name="confirmpass">
-								</div>
-								<div class="group-input">
-									<label for="email">Email *</label> <input
-										type="email" id="email" th:field="*{email}">
-								</div>
-								<div class="group-input">
-									<label for="phone">Phone *</label> <input
-										type="text" id="phone" th:field="*{phonenumber}">
+									<label for="username">Code:</label> <input
+										type="text" id="username" name="codeEmail">
 								</div> 
 								<i class="pull-left text-danger" th:text="${message}"></i>
-								<button type="submit" class="site-btn register-btn">REGISTER</button>
+								<button type="submit" class="site-btn register-btn">OK</button>
 							</form>
 							<div class="switch-login">
 								<a href="/security/login/form" class="or-login">Or Login</a>
