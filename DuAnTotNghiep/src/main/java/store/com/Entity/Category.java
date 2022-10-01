@@ -19,6 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
+@Table(name="Category")
 public class Category implements Serializable{
 	@Id
 	Integer categoryid;
