@@ -25,6 +25,11 @@ public class UserService implements UserDetailsService{
 			Account account = accountService.findById(username);
 			String password = account.getPassword();
 			String role = account.getRole().getRoleid();
+<<<<<<< HEAD
+=======
+			System.out.println(role);
+
+>>>>>>> a3616816adf9fdc3dd77f1a3125daa16d61c8c05
 			return User.withUsername(username).password(pe.encode(password)).roles(role).build();
 		} catch (Exception e) {
 			// TODO: handle exception
