@@ -19,12 +19,38 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "Style")
 public class Style implements Serializable{
 	@Id
-	Integer styleId;
-	String styleName;
+	Integer styleid;
+	String stylename;
 	@JsonIgnore
 	@OneToMany(mappedBy = "style")
 	List<Product> products;
+	public Integer getStyleid() {
+		return styleid;
+	}
+	public void setStyleid(Integer styleid) {
+		this.styleid = styleid;
+	}
+	public String getStylename() {
+		return stylename;
+	}
+	public void setStylename(String stylename) {
+		this.stylename = stylename;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	public Style() {
+		super();
+	}
+	public Style(Integer styleid, String stylename, List<Product> products) {
+		super();
+		this.styleid = styleid;
+		this.stylename = stylename;
+		this.products = products;
+	}
 }

@@ -19,14 +19,76 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "KOL")
+@Table(name="Kol")
 public class KOL implements Serializable{
 	@Id
-	Integer KOLId;
-	String KOLFullName;
-	String phoneNumber;
+	Integer kolid;
+	String kolfullname;
+	String phonenumber;
 	String email;
 	@JsonIgnore
-	@OneToMany(mappedBy = "KOL")
-	List<KOLvoucher> KOLvouchers;
+	@OneToMany(mappedBy = "kol")
+	List<KOLvoucher> kolvouchers;
+	public KOL() {
+		super();
+	}
+	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public KOL(Integer kolid, String kolfullname, String phonenumber, String email, List<KOLvoucher> kolvouchers) {
+		super();
+		this.kolid = kolid;
+		this.kolfullname = kolfullname;
+		this.phonenumber = phonenumber;
+		this.email = email;
+		this.kolvouchers = kolvouchers;
+	}
+
+
+	public Integer getKolid() {
+		return kolid;
+	}
+
+
+	public void setKolid(Integer kolid) {
+		this.kolid = kolid;
+	}
+
+
+	public String getKolfullname() {
+		return kolfullname;
+	}
+
+
+	public void setKolfullname(String kolfullname) {
+		this.kolfullname = kolfullname;
+	}
+
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+
+	public List<KOLvoucher> getKolvouchers() {
+		return kolvouchers;
+	}
+
+
+	public void setKolvouchers(List<KOLvoucher> kolvouchers) {
+		this.kolvouchers = kolvouchers;
+	}
+	
 }

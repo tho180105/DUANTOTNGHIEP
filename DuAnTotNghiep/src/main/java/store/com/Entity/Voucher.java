@@ -23,22 +23,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "Voucher")
+@Table(name="voucher")
 public class Voucher implements Serializable{
 	@Id
-	String voucherId;
-	String voucherTitle;
-	String voucherContent;
-	Float minimunMoney;
-	Float percentDiscount;
-	Float moneyDiscount;
+	String voucherid;
+	String vouchertitle;
+	String vouchercontent;
+	Float minimunmoney;
+	Float percentdiscount;
+	Float moneydiscount;
 	Integer quantity;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "StartDate")
-	Date startDate;
+	@Column(name = "Startdate")
+	Date startdate;
 	@Temporal(TemporalType.DATE)
-	@Column(name = "EndDate")
-	Date endDate;
+	@Column(name = "Enddate")
+	Date enddate;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "voucher")
@@ -46,4 +46,93 @@ public class Voucher implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy = "voucher")
 	List<Orders> Orders;
+	public Voucher() {
+		super();
+	}
+	public String getVoucherid() {
+		return voucherid;
+	}
+	public void setVoucherid(String voucherid) {
+		this.voucherid = voucherid;
+	}
+	public String getVouchertitle() {
+		return vouchertitle;
+	}
+	public void setVouchertitle(String vouchertitle) {
+		this.vouchertitle = vouchertitle;
+	}
+	public String getVouchercontent() {
+		return vouchercontent;
+	}
+	public void setVouchercontent(String vouchercontent) {
+		this.vouchercontent = vouchercontent;
+	}
+	public Float getMinimunmoney() {
+		return minimunmoney;
+	}
+	public void setMinimunmoney(Float minimunmoney) {
+		this.minimunmoney = minimunmoney;
+	}
+	public Float getPercentdiscount() {
+		return percentdiscount;
+	}
+	public void setPercentdiscount(Float percentdiscount) {
+		this.percentdiscount = percentdiscount;
+	}
+	public Float getMoneydiscount() {
+		return moneydiscount;
+	}
+	public void setMoneydiscount(Float moneydiscount) {
+		this.moneydiscount = moneydiscount;
+	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public Date getStartdate() {
+		return startdate;
+	}
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+	public Date getEnddate() {
+		return enddate;
+	}
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+	public List<KOLvoucher> getKOLvouchers() {
+		return KOLvouchers;
+	}
+	public void setKOLvouchers(List<KOLvoucher> kOLvouchers) {
+		KOLvouchers = kOLvouchers;
+	}
+	@JsonIgnore
+	public List<Orders> getOrders() {
+		return Orders;
+	}
+	public void setOrders(List<Orders> orders) {
+		Orders = orders;
+	}
+	public Voucher(String voucherid, String vouchertitle, String vouchercontent, Float minimunmoney,
+			Float percentdiscount, Float moneydiscount, Integer quantity, Date startdate, Date enddate,
+			List<KOLvoucher> kOLvouchers, List<store.com.Entity.Orders> orders) {
+		super();
+		this.voucherid = voucherid;
+		this.vouchertitle = vouchertitle;
+		this.vouchercontent = vouchercontent;
+		this.minimunmoney = minimunmoney;
+		this.percentdiscount = percentdiscount;
+		this.moneydiscount = moneydiscount;
+		this.quantity = quantity;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		KOLvouchers = kOLvouchers;
+		Orders = orders;
+	}
+	
+	
+	
 }

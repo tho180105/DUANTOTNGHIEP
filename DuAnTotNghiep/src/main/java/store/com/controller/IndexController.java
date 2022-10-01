@@ -27,10 +27,6 @@ public class IndexController {
 		return "product/detail";
 	}
 	
-	@RequestMapping("/cart")
-	public String cart() {
-		return "cart/view";
-	}
 	
 	@RequestMapping("/faq")
 	public String faq() {

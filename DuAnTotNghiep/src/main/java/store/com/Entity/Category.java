@@ -19,12 +19,38 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "Category")
 public class Category implements Serializable{
 	@Id
-	Integer categoryId;
-	String categoryName;
+	Integer categoryid;
+	String categoryname;
 	@JsonIgnore
 	@OneToMany(mappedBy = "categogy")
 	List<Product> products;
+	public Integer getCategoryid() {
+		return categoryid;
+	}
+	public void setCategoryid(Integer categoryid) {
+		this.categoryid = categoryid;
+	}
+	public String getCategoryname() {
+		return categoryname;
+	}
+	public void setCategoryname(String categoryname) {
+		this.categoryname = categoryname;
+	}
+	public List<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+	public Category() {
+		super();
+	}
+	public Category(Integer categoryid, String categoryname, List<Product> products) {
+		super();
+		this.categoryid = categoryid;
+		this.categoryname = categoryname;
+		this.products = products;
+	}
 }

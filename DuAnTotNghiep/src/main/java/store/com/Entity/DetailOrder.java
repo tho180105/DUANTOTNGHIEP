@@ -17,16 +17,85 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "DetailOrder")
+@Table(name="Detailorder")
 public class DetailOrder implements Serializable{
 	@Id
-	Integer detailOrderId;
-	Float productPrice;
+	Integer detailorderid;
+	Float productprice;
 	Integer quantity;
 	@ManyToOne
-	@JoinColumn(name = "ProductRepositoryId")
-	ProductRepository productRepository;
+	@JoinColumn(name = "productrepositoryid")
+	ProductRepository productrepository;
 	@ManyToOne
-	@JoinColumn(name = "OrderId")
+	@JoinColumn(name = "Orderid")
 	Orders orders;
+	public DetailOrder() {
+		super();
+	}
+	
+	
+
+	public Integer getDetailorderid() {
+		return detailorderid;
+	}
+
+
+
+	public void setDetailorderid(Integer detailorderid) {
+		this.detailorderid = detailorderid;
+	}
+
+
+
+	public Float getProductprice() {
+		return productprice;
+	}
+
+
+
+	public void setProductprice(Float productprice) {
+		this.productprice = productprice;
+	}
+
+
+
+	public ProductRepository getProductrepository() {
+		return productrepository;
+	}
+
+	public void setProductrepository(ProductRepository productrepository) {
+		this.productrepository = productrepository;
+	}
+
+	
+	public DetailOrder(Integer detailorderid, Float productprice, Integer quantity, ProductRepository productrepository,
+			Orders orders) {
+		super();
+		this.detailorderid = detailorderid;
+		this.productprice = productprice;
+		this.quantity = quantity;
+		this.productrepository = productrepository;
+		this.orders = orders;
+	}
+
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	public ProductRepository getProductRepository() {
+		return productrepository;
+	}
+	public void setProductRepository(ProductRepository productRepository) {
+		this.productrepository = productRepository;
+	}
+	public Orders getOrders() {
+		return orders;
+	}
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
 }

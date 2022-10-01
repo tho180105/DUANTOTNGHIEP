@@ -10,10 +10,8 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
@@ -21,14 +19,38 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "Role")
 public class Role implements Serializable{
 	@Id
-	String roleId;
+	String roleid;
 	String rolename;
 	@JsonIgnore
 	@OneToMany(mappedBy = "role")
 	List<Account> accounts;
+	public Role(String roleid, String rolename, List<Account> accounts) {
+		super();
+		this.roleid = roleid;
+		this.rolename = rolename;
+		this.accounts = accounts;
+	}
+	public String getRoleid() {
+		return roleid;
+	}
+	public void setRoleid(String roleid) {
+		this.roleid = roleid;
+	}
+	public String getRolename() {
+		return rolename;
+	}
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
+	}
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	public Role() {
+		super();
+	}
 }

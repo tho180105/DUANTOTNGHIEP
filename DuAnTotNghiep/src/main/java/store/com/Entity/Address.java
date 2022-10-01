@@ -1,4 +1,4 @@
-package store.com.Entity;
+	package store.com.Entity;
 
 import java.io.Serializable;
 
@@ -17,17 +17,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
-@Table(name = "Address")
 public class Address implements Serializable{
 	@Id
-	Integer addressId;
+	Integer addressid;
 	Integer province;
 	Integer district;
 	Integer ward;
-	String detailAddress;
-	Boolean defaultAddress;
+	String detailaddress;
+	Boolean defaultaddress;
 
 	@ManyToOne
-	@JoinColumn(name = "AccountId")
+	@JoinColumn(name = "Accountid")
 	Account account;
+
+
+
+	
 }

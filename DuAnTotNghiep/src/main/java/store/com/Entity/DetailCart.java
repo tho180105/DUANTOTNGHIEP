@@ -3,6 +3,8 @@ package store.com.Entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,16 +18,68 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-@Entity 
-@Table(name = "DetailCart")
-public class DetailCart implements Serializable{
+@Entity
+@Table(name="Detailcart")
+public class DetailCart implements Serializable {
 	@Id
-	Integer detailCartId;
-	Integer quantity;
+	 @GeneratedValue (strategy = GenerationType.IDENTITY)
+	Integer detailcartid;
+	Integer quantity;	
 	@ManyToOne
-	@JoinColumn(name = "ProductRepositoryId")
-	ProductRepository productRepository;
+	@JoinColumn(name = "productrepositoryid")
+	ProductRepository productrepository;
 	@ManyToOne
-	@JoinColumn(name = "AccountId")
+	@JoinColumn(name = "Accountid")
 	Account account;
+	
+	public Integer getDetailCartid() {
+		return detailcartid;
+	}
+
+	public void setDetailCartid(Integer detailCartid) {
+		this.detailcartid = detailCartid;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public ProductRepository getProductRepository() {
+		return productrepository;
+	}
+
+	public void setProductRepository(ProductRepository productRepository) {
+		this.productrepository = productRepository;
+	}
+
+	public Account getAccount() {
+		return account;
+	}
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+	public Integer getDetailcartid() {
+		return detailcartid;
+	}
+
+	public void setDetailcartid(Integer detailcartid) {
+		this.detailcartid = detailcartid;
+	}
+
+	public DetailCart( Integer quantity, ProductRepository productRepository, Account account) {
+		super();
+		this.quantity = quantity;
+		this.productrepository = productRepository;
+		this.account = account;
+	}
+
+	public DetailCart() {
+		super();
+	}
 }
