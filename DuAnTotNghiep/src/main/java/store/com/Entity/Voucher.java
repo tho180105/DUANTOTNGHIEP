@@ -23,6 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
+@Table(name="voucher")
 public class Voucher implements Serializable{
 	@Id
 	String voucherid;
@@ -48,31 +49,18 @@ public class Voucher implements Serializable{
 	public Voucher() {
 		super();
 	}
-	
-	public Voucher(String voucherid, String voucherTitle, String vouchercontent, Float minimunmoney,
-			Float percentdiscount, Float moneydiscount, Integer quantity, Date startdate, Date enddate,
-			List<KOLvoucher> kOLvouchers, List<store.com.Entity.Orders> orders) {
-		super();
-		this.voucherid = voucherid;
-		this.vouchertitle = voucherTitle;
-		this.vouchercontent = vouchercontent;
-		this.minimunmoney = minimunmoney;
-		this.percentdiscount = percentdiscount;
-		this.moneydiscount = moneydiscount;
-		this.quantity = quantity;
-		this.startdate = startdate;
-		this.enddate = enddate;
-		KOLvouchers = kOLvouchers;
-		Orders = orders;
-	}
-
 	public String getVoucherid() {
 		return voucherid;
 	}
 	public void setVoucherid(String voucherid) {
 		this.voucherid = voucherid;
 	}
-
+	public String getVouchertitle() {
+		return vouchertitle;
+	}
+	public void setVouchertitle(String vouchertitle) {
+		this.vouchertitle = vouchertitle;
+	}
 	public String getVouchercontent() {
 		return vouchercontent;
 	}
@@ -121,11 +109,30 @@ public class Voucher implements Serializable{
 	public void setKOLvouchers(List<KOLvoucher> kOLvouchers) {
 		KOLvouchers = kOLvouchers;
 	}
+	@JsonIgnore
 	public List<Orders> getOrders() {
 		return Orders;
 	}
 	public void setOrders(List<Orders> orders) {
 		Orders = orders;
 	}
+	public Voucher(String voucherid, String vouchertitle, String vouchercontent, Float minimunmoney,
+			Float percentdiscount, Float moneydiscount, Integer quantity, Date startdate, Date enddate,
+			List<KOLvoucher> kOLvouchers, List<store.com.Entity.Orders> orders) {
+		super();
+		this.voucherid = voucherid;
+		this.vouchertitle = vouchertitle;
+		this.vouchercontent = vouchercontent;
+		this.minimunmoney = minimunmoney;
+		this.percentdiscount = percentdiscount;
+		this.moneydiscount = moneydiscount;
+		this.quantity = quantity;
+		this.startdate = startdate;
+		this.enddate = enddate;
+		KOLvouchers = kOLvouchers;
+		Orders = orders;
+	}
+	
+	
 	
 }

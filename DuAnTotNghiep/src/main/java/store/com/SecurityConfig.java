@@ -46,6 +46,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 			.logoutSuccessUrl("/security/logoff/success");
 		
 
+		http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(30*24*60*60);
 		
 		http.oauth2Login()
 		.loginPage("/security/login/form")

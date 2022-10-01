@@ -1,7 +1,6 @@
 package store.com.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +14,14 @@ import store.com.Service.CategoryService;
 
 
 
+import store.com.Service.SessionService;
+
 @Controller
 public class IndexController {
 	
-	 
+	@Autowired
+	SessionService se;
+	
 	@RequestMapping("home")
 	public String home() {
 		return "home/home";

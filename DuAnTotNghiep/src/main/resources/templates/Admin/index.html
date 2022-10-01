@@ -289,7 +289,13 @@
       .when("/QuanLyBanner", {
         templateUrl: "./index2.html"
       })
+      .when("/cart", {
+        templateUrl: "./cart/view.html"
+      })
 
+      .when("/cart/order", {
+        templateUrl: "./cart/order.html"
+      })
       .otherwise ({
         redirectTo: "/main"
       })
