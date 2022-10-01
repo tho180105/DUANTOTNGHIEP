@@ -23,10 +23,8 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
 			Account account = accountService.findById(username);
-			System.out.println(account.getAccountid());
 			String password = account.getPassword();
 			String role = account.getRole().getRoleId();
-			System.out.println(role);
 			return User.withUsername(username).password(pe.encode(password)).roles(role).build();
 		} catch (Exception e) {
 			// TODO: handle exception
