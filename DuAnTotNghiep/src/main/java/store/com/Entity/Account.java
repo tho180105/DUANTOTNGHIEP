@@ -22,9 +22,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
 @Entity 
 public class Account implements Serializable{
 	@Id
@@ -59,11 +56,11 @@ public class Account implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="account")
 	List<ProductDiscount>  productDiscounts ;
-	public String getAccountId() {
+	public String getAccountid() {
 		return accountid;
 	}
-	public void setAccountId(String accountId) {
-		this.accountid = accountId;
+	public void setAccountid(String accountid) {
+		this.accountid = accountid;
 	}
 	public String getPassword() {
 		return password;
@@ -89,16 +86,16 @@ public class Account implements Serializable{
 	public void setCoin(Integer coin) {
 		this.coin = coin;
 	}
-	public String getPhoneNumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
-	public void setPhoneNumber(String phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public Date getCreateDate() {
+	public Date getCreatedate() {
 		return createdate;
 	}
-	public void setCreateDate(Date createdate) {
+	public void setCreatedate(Date createdate) {
 		this.createdate = createdate;
 	}
 	public String getStatus() {
@@ -149,13 +146,12 @@ public class Account implements Serializable{
 	public void setProductDiscounts(List<ProductDiscount> productDiscounts) {
 		this.productDiscounts = productDiscounts;
 	}
-	
-	public Account(String accountId, String password, String email, String avatar, Integer coin, String phonenumber,
+	public Account(String accountid, String password, String email, String avatar, Integer coin, String phonenumber,
 			Date createdate, String status, Role role, List<Rate> rates, List<Response> responses,
 			List<DetailCart> detailCarts, List<Address> addresses, List<Orders> orders,
 			List<ProductDiscount> productDiscounts) {
 		super();
-		this.accountid = accountId;
+		this.accountid = accountid;
 		this.password = password;
 		this.email = email;
 		this.avatar = avatar;
@@ -174,5 +170,6 @@ public class Account implements Serializable{
 	public Account() {
 		super();
 	}
+	
 	
 }

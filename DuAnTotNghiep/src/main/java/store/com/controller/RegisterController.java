@@ -40,7 +40,7 @@ public class RegisterController {
 	@PostMapping("register/check")
 	public String success(Model model,Account account,@RequestParam("confirmpass") String confirmPass) throws MessagingException {
 		try {
-			Account checkAcc = accService.findById(account.getAccountId());
+			Account checkAcc = accService.findById(account.getAccountid());
 			model.addAttribute("message", "Tài khoản đã tồn tại");
 			return "forward:/register/form";
 		} catch (Exception e) {
