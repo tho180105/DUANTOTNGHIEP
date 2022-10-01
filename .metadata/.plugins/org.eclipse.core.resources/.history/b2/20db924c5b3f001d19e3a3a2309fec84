@@ -1,0 +1,30 @@
+package store.com.Entity;
+
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@SuppressWarnings("serial")
+@Data
+@Getter
+@Setter
+@Entity 
+@Table(name = "ProductStatus")
+public class ProductStatus implements Serializable{
+	@Id
+	Integer productStatusId;
+	String productStatusTitle;
+	@JsonIgnore
+	@OneToMany(mappedBy="productStatus")
+	List<Product> products;
+}
