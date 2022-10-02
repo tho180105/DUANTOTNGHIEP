@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import store.com.DAO.AdditionalImagesDAO;
 import store.com.DAO.CategoryDAO;
 import store.com.DAO.ProductDAO;
 import store.com.Entity.AdditionalImages;
@@ -23,6 +24,9 @@ public class ProductController {
 	
 	@Autowired
 	ProductDAO productDAO;
+	
+	@Autowired
+	AdditionalImagesDAO imageDAO;
 	
 	@RequestMapping("/product/list")
 	public String list(Model model, @RequestParam("cid") Optional<Integer> cid) {
@@ -44,6 +48,9 @@ public class ProductController {
 		
 		Product product = productDAO.findById(productid).get();
 		model.addAttribute("item", product);
+		
+		List<AdditionalImages> listimage = imageDAO.findByImagePath(product.getProductid());
+		model.addAttribute("listimage", listimage);
 		
 		return "product/detail";
 	}
