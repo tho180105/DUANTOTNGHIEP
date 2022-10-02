@@ -16,26 +16,23 @@ import store.com.Service.CategoryService;
 
 import store.com.Service.SessionService;
 
+import store.com.DAO.CategoryDAO;
+import store.com.Entity.Category;
+
 @Controller
 public class IndexController {
 	
 	@Autowired
+	CategoryDAO categoryDAO;
+	 
+	@RequestMapping("/home")
+	public String home1(Model model) {
+		List<Category> list = categoryDAO.findAll(); 
+		model.addAttribute("cates", list); 
+	}
 	SessionService se;
 	
-	@RequestMapping("home")
-	public String home() {
-		return "home/home";
-	}
 	
-	@RequestMapping("/product")
-	public String list() {
-		return "product/list";
-	}
-	
-	@RequestMapping("/detail")
-	public String detail() {
-		return "product/detail";
-	}
 	
 	
 	@RequestMapping("/faq")
