@@ -12,24 +12,15 @@ import store.com.Entity.Category;
 
 @Controller
 public class IndexController {
+	
 	@Autowired
 	CategoryDAO categoryDAO;
 	 
 	@RequestMapping("/home")
-	public String home(Model model) {
-		List<Category> list = categoryDAO.findAll();
-		model.addAttribute("cates", list);
-		return "layout/index";
-	}
-	
-	@RequestMapping("/product")
-	public String list() {
-		return "product/list";
-	}
-	
-	@RequestMapping("/detail")
-	public String detail() {
-		return "product/detail";
+	public String home1(Model model) {
+		List<Category> list = categoryDAO.findAll(); 
+		model.addAttribute("cates", list); 
+		return "home/home";
 	}
 	
 	

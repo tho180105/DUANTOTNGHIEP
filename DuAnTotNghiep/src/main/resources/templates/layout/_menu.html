@@ -5,7 +5,7 @@
                         <i class="ti-menu"></i>
                         <span>All departments</span>
                         <ul class="depart-hover">
-                        	<li> <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.categoryId}|}">[[${c.categoryName}]]</a> </li>
+                        	<li> <a th:each="c : ${cates}" th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a> </li>
                         </ul>
                     </div>
                 </div>

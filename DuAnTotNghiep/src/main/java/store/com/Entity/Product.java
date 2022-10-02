@@ -34,9 +34,10 @@ public class Product implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Styleid")
 	Style style;
+	
 	@ManyToOne
 	@JoinColumn(name = "Categoryid")
-	Category categogy;
+	Category category;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "product",fetch=FetchType.LAZY)
@@ -97,10 +98,10 @@ public class Product implements Serializable{
 		this.style = style;
 	}
 	public Category getCategogy() {
-		return categogy;
+		return category;
 	}
-	public void setCategogy(Category categogy) {
-		this.categogy = categogy;
+	public void setCategogy(Category category) {
+		this.category = category;
 	}
 
 
@@ -122,7 +123,7 @@ public class Product implements Serializable{
 		this.describe = describe;
 		this.mainproductimage = mainproductimage;
 		this.style = style;
-		this.categogy = categogy;
+		this.category = categogy;
 		this.additionalimagess = additionalimagess;
 		this.productRepositories = productRepositories;
 		this.productDiscounts = productDiscounts;

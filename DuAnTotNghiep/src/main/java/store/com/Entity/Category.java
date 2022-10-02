@@ -22,11 +22,13 @@ import lombok.Setter;
 @Table(name="Category")
 public class Category implements Serializable{
 	@Id
-	Integer categoryid;
+	Integer categoryid; 
 	String categoryname;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "categogy")
+	@OneToMany(mappedBy = "category")
 	List<Product> products;
+	
 	public Integer getCategoryid() {
 		return categoryid;
 	}
