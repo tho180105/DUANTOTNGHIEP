@@ -1,6 +1,7 @@
 package store.com.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,8 @@ public class DetailOrderRestController {
 	DetailOrderDAO dao;
 
 	@PostMapping
-	public DetailOrder create(@RequestBody DetailOrder detailOrder) {
+	public DetailOrder create(@RequestBody DetailOrder detailOrder,Authentication auth) {
 		return dao.save(detailOrder);
 	}
-
+	
 }

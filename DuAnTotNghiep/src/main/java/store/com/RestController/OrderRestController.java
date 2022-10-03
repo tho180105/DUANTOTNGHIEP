@@ -3,6 +3,7 @@ package store.com.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,8 +35,11 @@ public class OrderRestController {
 	}
 	
 	@PostMapping
-	public Orders create(@RequestBody Orders orders) {
-		orders.setAccount(adao.findById("1").get());
+	public Orders create(@RequestBody Orders orders,Authentication auth) {
+		if (auth != null) {
+			orders.setAccount(adao.findById(auth.getName()).get());
+			return dao.save(orders);
+		}
 		return dao.save(orders);
 	}
 }

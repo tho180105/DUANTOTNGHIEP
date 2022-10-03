@@ -58,7 +58,7 @@
                                                 value="{{item.productRepository.product.sellingprice*item.quantity}}"
                                                 name="" id="" productRepositoryId="{{item.detailcartid}}"></td>
                                         <td style="width: 10%" class="cart-pic first-row"><img height="100%"
-                                                src="img/cart-page/product-1.jpg" alt=""></td>
+                                                src="/img/cart-page/product-1.jpg" alt=""></td>
                                         <td class="cart-title first-row text-center">
                                             <h5>{{item.productRepository.product.productname}} -
                                                 {{item.productRepository.size.sizeid}}</h5>
@@ -88,7 +88,7 @@
                                 <div class="proceed-checkout" style="position: sticky;top: 0;">
                                     <div class="col-12 mb-3 m-0 p-0">
                                         <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                        <a href="#" class="primary-btn continue-shop" ng-click="create(2)">Update cart</a>
+                                        <a href="#" class="primary-btn continue-shop" ng-click="create(3)">Update cart</a>
                                         <!-- <a  class="primary-btn up-cart" ng-click="create(4)">Update cart</a> -->
                                     </div>
                                     <ul>
@@ -96,7 +96,8 @@
                                         <li class="subtotal">Discount <span>0</span></li>
                                         <li class="cart-total">Total <span>${{totalMoney}}</span></li>
                                     </ul>
-                                    <a class="proceed-btn" ng-click="getProductsSelected()" >PROCEED TO CHECK OUT</a>
+                                    <button class="proceed-btn mb-2" ng-click="getProductsSelected()" ng-disabled="!checkSelectBoxProduct()"  style="width: 100%;" >PROCEED TO CHECK OUT</button>
+                                    <code style="margin-top: 10px;" ng-hide="checkSelectBoxProduct()" >Vui lòng chọn sản phẩm để tiếp tục thanh toán</code>
                                     <style>a.proceed-btn:hover{
                                         color: white !important;
                                     }</style>

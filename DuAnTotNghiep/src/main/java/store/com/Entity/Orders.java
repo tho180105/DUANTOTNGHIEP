@@ -131,7 +131,7 @@ public class Orders implements Serializable{
 	public void setVoucher(Voucher voucher) {
 		this.voucher = voucher;
 	}
-
+	@JsonIgnore
 	public List<DetailOrder> getOrderdetails() {
 		return orderdetails;
 	}

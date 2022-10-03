@@ -60,6 +60,7 @@
                             </div>
                             
                             <div class="row pl-4 " >
+                                
                                 <div class="col-6 d-flex flex-column justify-content-around " style="height: 240px">
                                     <div id="dropdown_province_border" style="background-color:white;display: inline;">
                                         Tỉnh/Thành phố  :   <input  class="mt-2 mb-3" autocomplete="off" type="text"  id="province_search" ng-blur="getDistrictAfterSelectProvince()" placeholder="Select province" >
@@ -83,7 +84,7 @@
                                 
                                 <div class="col-6"> 
                                     Địa chỉ cụ thể :
-                                    <textarea class="mt-2" ng-model="detailAddressOrder"  name="" id="" cols="30" rows="8"></textarea>
+                                    <textarea class="mt-2" ng-model="detailAddressOrder"  name="" id="detailAddress_search" cols="30" rows="8"></textarea>
                                 </div>
                             </div>
                             <div class="row ml-2" style="margin-top: -90px">
@@ -133,13 +134,15 @@
                                 </div>
                             </div>
                             <div class="proceed-checkout" style="position: sticky;top: 0;">
+                                <div class=" mb-2 text-danger" id="notifyElement" > {{emptyProperty}}</div>
                                 <ul>
                                     <li class="subtotal">Subtotal <span>{{subTotalMoney}}</span></li>
                                     <li class="subtotal">Ship fee <span>{{shipfee}}</span></li>
                                     <li class="subtotal">Discount <span>{{discountMoney}}</span></li>
                                     <li class="cart-total">Total <span>${{calculateTotalMoney()}}</span></li>
                                 </ul>
-                                <a class="proceed-btn"  ng-click="finishOrder()" >PROCEED TO CHECK OUT</a>
+                                <a class="proceed-btn"  ng-click="testValidation()" >PROCEED TO CHECK OUT</a>
+
                                     <style>a.proceed-btn:hover{
                                         color: white !important;
                                     }</style>

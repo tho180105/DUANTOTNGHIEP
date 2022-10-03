@@ -29,6 +29,7 @@ public class IndexController {
 	public String home1(Model model) {
 		List<Category> list = categoryDAO.findAll(); 
 		model.addAttribute("cates", list); 
+		return "home/home";
 	}
 	SessionService se;
 	
@@ -54,8 +55,7 @@ public class IndexController {
 	public String blogdetail() {
 		return "blog/blog-detail";
 	}
-	@Autowired
-	CategoryDAO categoryDAO;
+
 	CategoryService categoryService;
 	
 	@RequestMapping("/category")

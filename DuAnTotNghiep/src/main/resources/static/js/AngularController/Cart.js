@@ -1,12 +1,16 @@
 const app = angular.module("app", []);
 
+app.controller("pay-ctrl",function($rootScope,$scope){
+  $scope.orderIdPayedDone=$rootScope.orderIdPayed
+})
+
+
 app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   // $rootscope.detailCarts=[]
   $http.get(`/rest/cart`).then((resp) => {
    
     $rootScope.detailCarts = resp.data;
     
-    // console.log($rootScope.detailCarts)
   });
 
   $scope.decreaseQuantity = function (element) {
@@ -22,6 +26,7 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
     }
   };
   $scope.increaseQuantity = function (element) {
+
     oldValue = element.currentTarget.previousElementSibling.value;
     oldValueNumber = parseFloat(oldValue);
     element.currentTarget.previousElementSibling.value = oldValueNumber + 1;
@@ -67,7 +72,6 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         .post("/rest/cart/" + productRepositoryId)
         .then((resp) => {
           $rootScope.detailCarts.push(resp.data);
-          console.log(resp.data)
         })
         .catch((error) => {
           alert("Thêm lỗi");
@@ -95,7 +99,6 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
     $http
       .put("/rest/cart", detailCart)
       .then((resp) => {
-        console.log(resp.data);
       })
       .catch((error) => {
         alert("Thay đổi số lượng lỗi");
@@ -118,8 +121,20 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
     $timeout($scope.calculateFee, 200);
   };
 
+  $scope.checkSelectBoxProduct=function(){
+    var checkbox = document.getElementsByClassName("checkboxSelect");
+    for(let i=1;i<checkbox.length;i++){
+      if(checkbox[i].checked){
+        return true;
+      }
+    }
+    return false;
+  }
+
+
   $scope.getProductsSelected = function () {
     $scope.productIdsSelected = [];
+    console.log($rootScope.detailCarts)
     var checkbox = document.getElementsByClassName("checkboxSelect");
     for (let i = 1; i < checkbox.length; i++) {
       if (checkbox[i].checked) {
@@ -128,6 +143,7 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         );
       }
     }
+    
     $scope.filterCartToOrder();
     $scope.upListProductSelected();
     location.href="http://localhost:8080/cart/order"
@@ -136,14 +152,12 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
     $http
       .post(`/rest/cart/productSelected`, $scope.productsSelected)
       .then((resp) => {
-        console.log(resp.data);
       });
   };
 
   $scope.filterCartToOrder = function () {
     $scope.productsSelected = [];
     $rootScope.detailCarts.forEach((a) => {
-      console.log(a)
       $scope.productIdsSelected.forEach((v) => {
         if (a.detailcartid == v) {
           $scope.productsSelected.push(a);
@@ -152,13 +166,12 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
     });
   };
 
-  // Nếu add trùng thì thêm số lượng hoặc khỏi
-  // Add mơi set account id là user đăng nhập ,quantity =1, productRepository từ link add
-  // Từ list productreposiry tìm ra theo id,
-  // page 1 : subtotal : display:flex
-  //Tính tiền sub
-  // Khi radio phí thì tính
-  // Get discout thì tính toán và hiệu ứng
+ 
+
+
+
   // Khi phi thay doi thì cap nhat lai
-  //Lay sẩn pham bên Cart
+  //Khi chọn hàng thanh toán , thanh toán thì bên cart sẽ mất sp đó 
 });
+
+

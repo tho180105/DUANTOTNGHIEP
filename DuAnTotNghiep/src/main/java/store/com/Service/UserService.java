@@ -23,10 +23,6 @@ public class UserService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
 			Account account = accountService.findById(username);
-<<<<<<< HEAD
-			System.out.println(account.getAccountid());
-=======
->>>>>>> 65ee11a72f410a0ea2c2168b103fdf7eccc8980f
 			String password = account.getPassword();
 			String role = account.getRole().getRoleid();
 
