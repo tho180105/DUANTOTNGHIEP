@@ -52,7 +52,7 @@ public class LoginController {
 		return "security/login";
 	}
 	
-	@RequestMapping("/admin/test")
+	@RequestMapping("/admin/test") 
 	public String test(Model model) {
 		return "home/home";
 	}

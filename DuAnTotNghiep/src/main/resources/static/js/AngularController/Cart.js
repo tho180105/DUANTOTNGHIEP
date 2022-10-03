@@ -3,7 +3,9 @@ const app = angular.module("app", []);
 app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   // $rootscope.detailCarts=[]
   $http.get(`/rest/cart`).then((resp) => {
+   
     $rootScope.detailCarts = resp.data;
+    
     // console.log($rootScope.detailCarts)
   });
 
@@ -53,6 +55,9 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   $scope.totalMoney = 0;
   //Check thì thêm tổng không check thì trừ ra khai báo =0;
   $scope.create = function (productRepositoryId) {
+    if($rootScope.detailCarts==""){
+      $rootScope.detailCarts=[]
+    }
     var checkExist = $rootScope.detailCarts.findIndex(
       (item) =>
         item.productRepository.productrepositoryid == productRepositoryId
@@ -62,9 +67,10 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         .post("/rest/cart/" + productRepositoryId)
         .then((resp) => {
           $rootScope.detailCarts.push(resp.data);
+          console.log(resp.data)
         })
         .catch((error) => {
-          alert("Thay đổi số lượng lỗi");
+          alert("Thêm lỗi");
           console.log(error);
         });
     } else {
@@ -73,17 +79,18 @@ app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
         .put("/rest/cart", $rootScope.detailCarts[checkExist])
         .then((resp) => {})
         .catch((error) => {
-          alert("Thay đổi số lượng lỗi");
+          alert("Thêm lỗi");
           console.log(error);
         });
+        
     }
     $timeout($scope.calculateFee, 200);
   };
-
+ 
   $scope.update = function (detailCartId, quantity) {
     var detailCart = $rootScope.detailCarts.find(
       (item) => item.detailcartid == detailCartId
-    );
+    ); 
     detailCart.quantity = quantity;
     $http
       .put("/rest/cart", detailCart)

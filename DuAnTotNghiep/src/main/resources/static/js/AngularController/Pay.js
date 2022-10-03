@@ -102,6 +102,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
         String(ward) +
         ", " +
         String($scope.detailAddressOrder);
+
       $scope.newOrder.orderstatus = {};
       $scope.newOrder.orderstatus.orderstatusid = 1;
       $scope.newOrder.voucher = {};
@@ -111,8 +112,31 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       $scope.newOrder.totalmoney = $scope.calculateTotalMoney();
       $http.post("/rest/order", $scope.newOrder).then((resp) => {
         console.log(resp.data);
+        $scope.addDetailOrdersFinish();
       });
     });
+  };
+
+  $scope.addDetailOrdersFinish = function (orderid) {
+    console.log($rootScope.productsSelected);
+    for (const iterator of $rootScope.productsSelected) {
+      $scope.newDetailOrder = [];
+      $scope.newDetailOrder.productprice =    iterator.productRepository.product.sellingprice;
+      $scope.newDetailOrder.productrepository = [];
+      $scope.newDetailOrder.productrepository.productrepositoryid = iterator.productRepository.productrepositoryid;
+      $scope.newDetailOrder.orders = [];
+      $scope.newDetailOrder.orders.orderid = orderid
+        .post("/rest/detailorder", $scope.newDetailOrder)
+        .then((resp) => {
+          console.log(resp.data);
+          $scope.addDetailOrdersFinish();
+        });
+    }
+
+    //   orderid
+    //   quantity
+    //  productprice
+    //  productmoneyrepository
   };
 
   ///GET CITY
