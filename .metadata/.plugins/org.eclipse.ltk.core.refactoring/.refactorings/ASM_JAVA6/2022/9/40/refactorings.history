@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;CategoryService.java&apos; to &apos;DuAnTotNghiep/src/main/java/store.com.Service&apos;&#x0D;&#x0A;- Original project: &apos;ASM_JAVA6&apos;&#x0D;&#x0A;- Destination element: &apos;DuAnTotNghiep/src/main/java/store.com.Service&apos;&#x0D;&#x0A;- Original element: &apos;poly.store.service.CategoryService.java&apos;" description="Copy compilation unit" destination="=DuAnTotNghiep/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;store.com.Service" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;poly.store.service{CategoryService.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1664473468040" units="1" version="1.0"/>
+</session>
