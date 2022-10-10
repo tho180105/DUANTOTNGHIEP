@@ -114,7 +114,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       });
     });
   };
-
+  
   ///GET CITY
   $http({
     method: "GET",

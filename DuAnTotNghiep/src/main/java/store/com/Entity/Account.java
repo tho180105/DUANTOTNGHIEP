@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,14 +23,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
+
 @Entity 
 public class Account implements Serializable{
 	@Id
+	@NotBlank(message = "không bỏ trống tài khoản")
 	String accountid;
+	@NotBlank(message = "Không được bỏ trống mật khẩu")
 	String password;
+	@NotBlank(message = "Không được bỏ trống email")
 	String email;
 	String avatar;
 	Integer coin;
@@ -59,10 +61,10 @@ public class Account implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="account")
 	List<ProductDiscount>  productDiscounts ;
-	public String getAccountId() {
+	public String getAccountid() {
 		return accountid;
 	}
-	public void setAccountId(String accountId) {
+	public void setAccountid(String accountId) {
 		this.accountid = accountId;
 	}
 	public String getPassword() {
@@ -89,10 +91,10 @@ public class Account implements Serializable{
 	public void setCoin(Integer coin) {
 		this.coin = coin;
 	}
-	public String getPhoneNumber() {
+	public String getPhonenumber() {
 		return phonenumber;
 	}
-	public void setPhoneNumber(String phonenumber) {
+	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
 	public Date getCreateDate() {

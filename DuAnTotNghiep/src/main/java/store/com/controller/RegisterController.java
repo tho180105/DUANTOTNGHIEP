@@ -5,12 +5,12 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import store.com.Entity.Account;
 import store.com.Entity.Role;
@@ -38,9 +38,12 @@ public class RegisterController {
 	
 	
 	@PostMapping("register/check")
-	public String success(Model model,Account account,@RequestParam("confirmpass") String confirmPass) throws MessagingException {
+	public String success(Model model, @Validated @ModelAttribute("sv") Account account, Errors errors, @RequestParam("confirmpass") String confirmPass) throws MessagingException {
+		if (errors.hasErrors()) {
+			return "security/register";
+		}
 		try {
-			Account checkAcc = accService.findById(account.getAccountId());
+			Account checkAcc = accService.findById(account.getAccountid());
 			model.addAttribute("message", "Tài khoản đã tồn tại");
 			return "forward:/register/form";
 		} catch (Exception e) {
@@ -49,6 +52,15 @@ public class RegisterController {
 				return "forward:/register/form";
 			}
 			List<Account> checkAcc = accService.findAll();
+			for(Account listAcc: checkAcc){
+				if(listAcc.getEmail() ==null){
+					listAcc.setEmail("");
+				}
+				if(listAcc.getEmail().equals(account.getEmail())){
+					model.addAttribute("message", "Email đã tồn tại");
+					return "forward:/register/form";
+				}
+			}
 			acc = account;
 			codeEmail = codeEmail();
 			mailer.send(account.getEmail(), "Xác nhận Email ","Mã xác nhận của bạn là :"+ codeEmail);	
@@ -69,7 +81,7 @@ public class RegisterController {
 			codeEmail= "";
 			return "security/login";
 		}
-		model.addAttribute("message", "đăng ký thất bại");
+		model.addAttribute("message", "Mã xác nhận không đúng");
 		return "security/confirm-email";
 	}
 	
@@ -84,6 +96,13 @@ public class RegisterController {
             }
         }
         return chuyen;
+	}
+	
+	
+	@RequestMapping("/account")
+	public String account(Model model,Authentication auth) {
+	    model.addAttribute("sv", accService.findById(auth.getName()));
+	    return "user/account";
 	}
 	
 }

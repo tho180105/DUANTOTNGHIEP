@@ -32,7 +32,6 @@ public class LoginController {
 	
 	@RequestMapping("/security/login/success")
 	public String success(Model model,Authentication auth ){
-		System.out.println(auth.getName());
 		if(cookie.get("remember-me")!=null) {
 			Cookie acc = cookie.get("JSESSIONID");
 			cookie.add("JSESSIONID", acc.getValue(), 24*30);
