@@ -32,12 +32,14 @@ public class DetailCart implements Serializable {
 	@JoinColumn(name = "Accountid")
 	Account account;
 	
-	public Integer getDetailCartid() {
-		return detailcartid;
+	
+
+	public ProductRepository getProductrepository() {
+		return productrepository;
 	}
 
-	public void setDetailCartid(Integer detailCartid) {
-		this.detailcartid = detailCartid;
+	public void setProductrepository(ProductRepository productrepository) {
+		this.productrepository = productrepository;
 	}
 
 	public Integer getQuantity() {
@@ -63,7 +65,7 @@ public class DetailCart implements Serializable {
 	public void setAccount(Account account) {
 		this.account = account;
 	}
-
+	
 	public Integer getDetailcartid() {
 		return detailcartid;
 	}
@@ -82,4 +84,11 @@ public class DetailCart implements Serializable {
 	public DetailCart() {
 		super();
 	}
+
+	public DetailCart(Integer quantity, ProductRepository productrepository) {
+		super();
+		this.quantity = quantity;
+		this.productrepository = productrepository;
+	}
+	
 }

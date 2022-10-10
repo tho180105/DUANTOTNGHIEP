@@ -52,12 +52,14 @@ public class ProductRepository implements Serializable{
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
+	@JsonIgnore
 	public List<DetailCart> getDetailCarts() {
 		return detailCarts;
 	}
 	public void setDetailCarts(List<DetailCart> detailCarts) {
 		this.detailCarts = detailCarts;
 	}
+	@JsonIgnore
 	public List<DetailOrder> getDetailOrders() {
 		return detailOrders;
 	}
