@@ -22,8 +22,9 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-8 order-2 order-lg-1 produts-sidebar-filter">
                     <div class="filter-widget">
-                        <h4 class="fw-title">Categories</h4>
+                        <h4 class="fw-title"> <a th:href="@{|/product/list|}" style="color: #333;">Categories</a> </h4>
                         <ul class="filter-catagories">
+                          
                             <li th:each="c : ${cates}"><a th:href="@{|/product/list?cid=${c.categoryid}|}">[[${c.categoryname}]]</a> </li>
                         </ul>
                     </div>
@@ -62,71 +63,23 @@
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Price</h4>
-                        <div class="filter-range-wrap">
-                            <div class="range-slider">
-                                <div class="price-input">
-                                    <input type="text" id="minamount">
-                                    <input type="text" id="maxamount">
-                                </div>
-                            </div>
-                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                data-min="33" data-max="98">
-                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
-                            </div>
-                        </div>
-                        <a href="#" class="filter-btn">Filter</a>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Color</h4>
-                        <div class="fw-color-choose">
-                            <div class="cs-item">
-                                <input type="radio" id="cs-black">
-                                <label class="cs-black" for="cs-black">Black</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-violet">
-                                <label class="cs-violet" for="cs-violet">Violet</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-blue">
-                                <label class="cs-blue" for="cs-blue">Blue</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-yellow">
-                                <label class="cs-yellow" for="cs-yellow">Yellow</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-red">
-                                <label class="cs-red" for="cs-red">Red</label>
-                            </div>
-                            <div class="cs-item">
-                                <input type="radio" id="cs-green">
-                                <label class="cs-green" for="cs-green">Green</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-widget">
-                        <h4 class="fw-title">Size</h4>
-                        <div class="fw-size-choose">
-                            <div class="sc-item">
-                                <input type="radio" id="s-size">
-                                <label for="s-size">s</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="m-size">
-                                <label for="m-size">m</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="l-size">
-                                <label for="l-size">l</label>
-                            </div>
-                            <div class="sc-item">
-                                <input type="radio" id="xs-size">
-                                <label for="xs-size">xs</label>
-                            </div>
-                        </div>
+                        <form th:action="@{/product/list/xtype}" method="post">
+	                        <div class="filter-range-wrap">
+	                            <div class="range-slider">
+	                                <div class="price-input">
+	                                    <input type="text" id="minamount" name="min" th:value="0" >
+	                                    <input type="text" id="maxamount" name="max" th:value="1000">
+	                                </div>
+	                            </div>
+	                            <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
+	                                data-min="0" data-max="1000">
+	                                <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+	                                <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+	                            </div>
+	                        </div>
+	                        <button class="filter-btn" style="border: none;">Filter</button>
+                        </form>
                     </div>
                     <div class="filter-widget">
                         <h4 class="fw-title">Tags</h4>
@@ -146,42 +99,47 @@
                         <div class="row">
                             <div class="col-lg-7 col-md-7">
                                 <div class="select-option">
-                                    <select class="sorting">
-                                        <option value="">Mới nhất</option>
-                                        <option value="">Mua nhiều nhất</option>
-                                        <option value="">Giá thấp đến cao</option>
-                                        <option value="">Giá cao đến thấp</option>
-                                    </select>
+									
+									<form method="post">
+										<select name="search" onblur="this.form.submit()">
+		                                   <option value="MD" >Mặc định</option>
+		                                   <option value="MN" >Mới nhất</option>
+		                                   <option value="MNN" >Mua nhiều nhất</option>
+		                                   <option value="GiaThap" >Giá thấp đến cao</option>
+		                                   <option value="GiaCao" >Giá cao đến thấp</option>
+		                                </select>
+		                          
+									</form>
                                 </div>
                             </div>
                             <div class="col-lg-5 col-md-5 text-right">
-                                <p>Show 01- 09 Of 36 Product</p>
+                                <p>Show [[${page.numberOfElements}]] Of [[${totalItems}]] Product</p>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="product-list">
                         <div class="row">
-                            <div class="col-lg-4 col-sm-6" th:each="p : ${products}">
+                            <div class="col-lg-4 col-sm-6" th:each="item, index : ${page.content}">
                                 <div class="product-item">
                                     <div class="pi-pic">
-                                        <img th:src="@{|/img/products-main/${p.mainproductimage}.jpg|}" alt="">
+                                        <img th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="">
                                         <div class="icon">
                                             <i class="icon_heart_alt"></i>
                                         </div>
                                         <ul>
                                             <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                            <li class="quick-view"><a th:href="@{|/product/detail/${p.productid}|}">+ Quick View</a></li>
+                                            <li class="quick-view"><a th:href="@{|/product/detail/${item.productid}|}">+ Quick View</a></li>
                                             <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
                                         </ul>
                                     </div>
                                     <div class="pi-text">
-                                        <div class="catagory-name">[[${p.category.categoryname}]]</div>
-                                        <a th:href="@{|/product/detail/${p.productid}|}">
-                                            <h5>[[${p.productname}]]</h5>
+                                        <div class="catagory-name">[[${item.category.categoryname}]]</div>
+                                        <a th:href="@{|/product/detail/${item.productid}|}">
+                                            <h5>[[${item.productname}]]</h5>
                                         </a>
                                         <div class="product-price">
-                                            $[[${p.sellingprice}]]
-                                            <span>$[[${p.listedprice}]]</span>
+                                            $[[${item.sellingprice}]]
+                                            <span>$[[${item.listedprice}]]</span>
                                         </div>
                                     </div>
                                 </div>
@@ -189,15 +147,33 @@
                             
                         </div>
                     </div>
-                    <div class="loading-more">
-                        <i class="icon_loading"></i>
-                        <a href="#">
-                            Loading More
-                        </a>
-                    </div>
+                    <nav aria-label="Page navigation example" class="mt-3 mx-auto" style="display: flex; align-items: center; justify-content: center;">
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold" th:if="${cids} != null " th:href="@{|/product/list?cid=${cid}&&p=0|}" aria-label="First Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                            <a class="page-link text-white fw-bold" th:unless="${cids} != null " th:href="@{|/product/list?p=0|}" aria-label="First Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"><a class="page-link bg-light fw-bold" th:if="${cids} != null "  th:href="@{|/product/list?cid=${cid}&&p=${i-1}|}">[[${i}]]</a>
+                          	<a class="page-link bg-light fw-bold" th:unless="${cids} != null"  th:href="@{|/product/list?p=${i-1}|}">[[${i}]]</a>
+                          </li>
+                          
+                          <li class="page-item">
+                            <a class="page-link text-white fw-bold" th:if="${cids} != null " th:href="@{|/product/list?cid=${cid}&&p=${totalPages-1}|}"  aria-label="Last Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                            <a class="page-link text-white fw-bold" th:unless="${cids} != null " th:href="@{|/product/list?p=${totalPages-1}|}"  aria-label="Last Page" style="background-color: #e7ab3c">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
                 </div>
             </div>
-        </div>
+           </div>
     </section>
 	    
     </main>

@@ -5,12 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GeneratorType;
 
 import lombok.Data;
 import lombok.Getter;
@@ -24,6 +28,7 @@ import lombok.Setter;
 @Table(name="Productdiscount")
 public class ProductDiscount implements Serializable{
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer productdiscountid;
 	
 	@Temporal(TemporalType.DATE)
@@ -43,7 +48,11 @@ public class ProductDiscount implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "Accountid")
 	Account account;
-
+	
+	public ProductDiscount() {
+        super();
+    }
+	
 	public ProductDiscount(Integer productdiscountid, Date startdate, Date enddate, Float discount, Product product,
 			Account account) {
 		super();
@@ -55,9 +64,7 @@ public class ProductDiscount implements Serializable{
 		this.account = account;
 	}
 
-	public ProductDiscount() {
-		super();
-	}
+	
 
 	public Integer getProductdiscountid() {
 		return productdiscountid;

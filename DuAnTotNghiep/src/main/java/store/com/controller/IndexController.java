@@ -21,21 +21,18 @@ import store.com.Entity.Category;
 
 @Controller
 public class IndexController {
-	
+    SessionService se;
+    
 	@Autowired
 	CategoryDAO categoryDAO;
-	 
+	
 	@RequestMapping("/home")
 	public String home1(Model model) {
 		List<Category> list = categoryDAO.findAll(); 
 		model.addAttribute("cates", list); 
 		return "home/home";
 	}
-	SessionService se;
-	
-	
-	
-	
+
 	@RequestMapping("/faq")
 	public String faq() {
 		return "home/faq";

@@ -31,20 +31,25 @@
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="product-pic-zoom">
-                                <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="">
-                                <div class="zoom-icon">
-                                    <i class="fa fa-search-plus"></i>
-                                </div>
+                        <div class="col-lg-6 swiper">
+                            <div class="swiper-wrapper">
+                            	<div class="swiper-slide" th:each="i :${listimage}">
+                            		<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt="" class="SmallProductImg">
+                            	 </div>
+                   <!--               <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="" id="ProductImg">  -->
                             </div>
-                            <div class="product-thumbs">
+                            <!-- If we need pagination -->
+				            <div class="swiper-pagination"></div>
+				          
+				            <!-- If we need navigation buttons -->
+				            
+                            <!-- <div class="product-thumbs">
                                 <div class="product-thumbs-track ps-slider owl-carousel">
-                                    <div class="pt" data-imgbigurl="@{|/img/products-main/${i.imagepath}.jpg|}" th:each="i : ${listimage}">
-                                    	<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt="">
+                                    <div class="pt" th:each="i :${listimage}">
+                                    	<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt="" class="SmallProductImg">
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="col-lg-6">
                             <div class="product-details">
@@ -81,10 +86,10 @@
                                     </div>
                                 </div>
                                 <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="number" value="1" />
+                                    <div class="pro-qty" style="width:80px ;padding: 0">
+                                        <input type="number" value="1" min="1" style="width: 100%; padding: 0; margin: 0; font-size: 18px"/>
                                     </div>
-                                    <a href="#" class="primary-btn pd-cart">Add To Cart</a>
+                                    <a th:href="@{|/cart/${item.productid}|}" class="primary-btn pd-cart">Add To Cart</a>
                                 </div>
                                 <ul class="pd-tags">
                                     <li><span>CATEGORIES</span>: More Accessories, Wallets & Cases</li>
@@ -105,13 +110,13 @@
                         <div class="tab-item">
                             <ul class="nav" role="tablist">
                                 <li>
-                                    <a class="active" data-toggle="tab" href="#tab-1" role="tab">DESCRIPTION</a>
+                                    <a class="active" data-toggle="tab" href="#tab-1" role="tab">MÔ TẢ</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-2" role="tab">SPECIFICATIONS</a>
+                                    <a data-toggle="tab" href="#tab-2" role="tab">THÔNG SỐ</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="tab" href="#tab-3" role="tab">Customer Reviews (02)</a>
+                                    <a data-toggle="tab" href="#tab-3" role="tab">BÌNH LUẬN</a>
                                 </li>
                             </ul>
                         </div>
@@ -121,7 +126,7 @@
                                     <div class="product-content">
                                         <div class="row">
                                             <div class="col-lg-7">
-                                                <h5>Introduction</h5>
+                                                <h5>MÔ TẢ</h5>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                                                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
                                                     ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -142,7 +147,7 @@
                                     <div class="specification-table">
                                         <table>
                                             <tr>
-                                                <td class="p-catagory">Customer Rating</td>
+                                                <td class="p-catagory">Đánh giá trung bình</td>
                                                 <td>
                                                     <div class="pd-rating">
                                                         <i class="fa fa-star"></i>
@@ -155,45 +160,30 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Price</td>
+                                                <td class="p-catagory">Giá</td>
                                                 <td>
-                                                    <div class="p-price">$495.00</div>
+                                                    <div class="p-price">$[[${item.sellingprice}]]</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Add To Cart</td>
                                                 <td>
-                                                    <div class="cart-add">+ add to cart</div>
+                                                    <div class="cart-add"> <a href="" style="text-decoration: none; color: black;">+ add to cart</a> </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="p-catagory">Availability</td>
+                                                <td class="p-catagory">Kho</td>
                                                 <td>
-                                                    <div class="p-stock">22 in stock</div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Weight</td>
-                                                <td>
-                                                    <div class="p-weight">1,3kg</div>
+                                                    <div class="p-stock">22 sản phẩm</div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td class="p-catagory">Size</td>
                                                 <td>
-                                                    <div class="p-size">Xxl</div>
+                                                    <div class="p-size">M, L, XL</div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td class="p-catagory">Color</td>
-                                                <td><span class="cs-color"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="p-catagory">Sku</td>
-                                                <td>
-                                                    <div class="p-code">00012</div>
-                                                </td>
-                                            </tr>
+                                         
                                         </table>
                                     </div>
                                 </div>
@@ -278,109 +268,37 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Related Products</h2>
+                        <h2>SẢN PHẨM TƯƠNG TỰ</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-1.jpg" alt="">
-                            <div class="sale">Sale</div>
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-2.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Shoes</div>
-                            <a href="#">
-                                <h5>Guangzhou sweater</h5>
-                            </a>
-                            <div class="product-price">
-                                $13.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-3.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Pure Pineapple</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="product-item">
-                        <div class="pi-pic">
-                            <img src="img/products/women-4.jpg" alt="">
-                            <div class="icon">
-                                <i class="icon_heart_alt"></i>
-                            </div>
-                            <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="pi-text">
-                            <div class="catagory-name">Towel</div>
-                            <a href="#">
-                                <h5>Converse Shoes</h5>
-                            </a>
-                            <div class="product-price">
-                                $34.00
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="owl-carousel owl-theme">
+                <div  th:each="p : ${item.category.products}">
+		              <div class="product-item ">
+		                        <div class="pi-pic">
+		                            <img th:src="@{|/img/products-main/${p.mainproductimage}.jpg|}" alt="">
+		                            <div class="sale">Sale</div>
+		                            <div class="icon">
+		                                <i class="icon_heart_alt"></i>
+		                            </div>
+		                            <ul>
+		                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+		                                <li class="quick-view"><a th:href="@{|/product/detail/${p.productid}|}">+ Quick View</a></li>
+		                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+		                            </ul>
+		                        </div>
+		                        <div class="pi-text">
+		                            <div class="catagory-name">[[${p.category.categoryname}]]</div>
+		                            <a href="#">
+		                                <h5>[[${p.productname}]]</h5>
+		                            </a>
+		                            <div class="product-price">
+		                                $[[${p.sellingprice}]]
+		                                <span>$[[${p.listedprice}]]</span>
+		                            </div>
+		                        </div>
+		                  </div>
+		         </div>
             </div>
         </div>
     </div>
@@ -388,3 +306,4 @@
 	    
     </main>
 </div>
+

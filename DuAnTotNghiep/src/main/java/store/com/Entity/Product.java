@@ -3,6 +3,7 @@ package store.com.Entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,7 +47,10 @@ public class Product implements Serializable{
 	@OneToMany(mappedBy = "product")
 	List<ProductRepository> productRepositories;
 	@JsonIgnore
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product",
+	        orphanRemoval = true,
+            cascade = CascadeType.ALL
+	        )
 	List<ProductDiscount> productDiscounts;
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")
@@ -55,6 +59,7 @@ public class Product implements Serializable{
 	public Product() {
 		super();
 	}
+	
 	public Integer getProductid() {
 		return productid;
 	}

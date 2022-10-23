@@ -1,6 +1,7 @@
 package store.com.controller;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ public class CartController {
 	public String cart() {
 		return "cart/view";
 	}
+	
 	@RequestMapping("/cart/order")
 	public String cart1() {
 		return "cart/order";
@@ -22,4 +24,11 @@ public class CartController {
 		se.removeAttribute("detailCartWaiting");
 		return "cart/paydone";
 	}
+	
+	@RequestMapping("/cart/{id}")
+    public String cart(Model model, @PathVariable("id") Integer productid, HttpServletRequest request) {
+	    System.out.println(productid);
+	    System.out.println(request.getRequestURI());
+        return "cart/view";
+    }
 }
