@@ -70,7 +70,7 @@
                                                 <div class="pro-qty">
                                                     <span class="dec qtybtn" ng-click="decreaseQuantity($event)"
                                                         detailCartId="{{item.detailcartid}}">-</span>
-                                                    <input type="text" value="{{item.quantity}}">
+                                                    <input detailCartId="{{item.detailcartid}}" type="text" value="{{item.quantity}}" ng-blur="updateBlur($event)">
                                                     <span class="inc qtybtn" ng-click="increaseQuantity($event)"
                                                         detailCartId="{{item.detailcartid}}">+</span>
                                                 </div>

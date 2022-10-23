@@ -89,12 +89,7 @@ public class DetailOrder implements Serializable{
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public ProductRepository getProductRepository() {
-		return productrepository;
-	}
-	public void setProductRepository(ProductRepository productRepository) {
-		this.productrepository = productRepository;
-	}
+	
 	public Orders getOrders() {
 		return orders;
 	}

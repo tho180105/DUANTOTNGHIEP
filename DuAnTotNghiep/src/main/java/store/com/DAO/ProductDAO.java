@@ -16,4 +16,11 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 
 	@Query("SELECT p FROM AdditionalImages p WHERE p.product.productid = ?1")
 	List<AdditionalImages> findByImage(Integer integer);
+	
+	@Query("SELECT count(p.productid) FROM Product p")
+    Integer getCount();
+	
+	//
+//	@Query("SELECT count(p.productid) FROM Product p")
+//    Integer getTotal();
 }

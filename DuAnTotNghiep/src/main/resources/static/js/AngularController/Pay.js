@@ -111,6 +111,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       }
       $scope.newOrder.productmoney = $scope.subTotalMoney;
       $scope.newOrder.shipfee = $scope.shipfee;
+      $scope.newOrder.phonenumber =document.getElementById("phoneNumber").value;
       $scope.newOrder.totalmoney = $scope.calculateTotalMoney();
       $http.post("/rest/order", $scope.newOrder).then((resp) => {
         console.log(resp.data);
@@ -134,36 +135,19 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
         });
         $http.delete("/rest/cart/"+iterator.detailcartid)
         .then((resp) => {
+          console.log(resp.data)
         });
     }
     location.href="/cart/order/"+$rootScope.orderIdPayed
   };
 
+
+
 $scope.testValidation=function(){
-  var hideNotify =true;
-  document.getElementById("notifyElement").style.display="block"
-  var addressOptionValidation =["province","district","ward","detailAddress"]
-  var addressOptionValidationText =["Tỉnh/Thành phố","Quận/Huyện","Xã/Phường","Địa chỉ cụ thể"]
-  for (let i =0 ;i<addressOptionValidation.length;i++) {
-    if(document.getElementById(addressOptionValidation[i]+"_search").value==""){
-      $scope.emptyProperty="Vui lòng chọn "+addressOptionValidationText[i]
-      document.getElementById(addressOptionValidation[i]+"_search").focus()
-      hideNotify=false;
-      break
-    }
-  }
-  if($scope.shipfee==0&&hideNotify){
-    $scope.emptyProperty="Vui lòng chọn dịch vụ giao hàng"
-    hideNotify=false;
-  }
-  if(document.getElementsByClassName("radio_pay")[0].checked==false && document.getElementsByClassName("radio_pay")[1].checked ==false &&hideNotify){
-    hideNotify=false;
-    $scope.emptyProperty="Vui lòng chọn phương thức thanh toán"
-  }
-  if(hideNotify){    
-    document.getElementById("notifyElement").style.display="none"
-    $scope.finishOrder();
-    }
+  var x =document.getElementById("form_order")
+  if (x.checkValidity()) {
+     $scope.finishOrder()
+    } 
 }
 
 
@@ -177,10 +161,9 @@ $scope.testValidation=function(){
 
 
 
-
-
   ///GET CITY
-  $http({
+ $scope.getCityStart=function(){
+ $http({
     method: "GET",
     url: "http://sandbox.goship.io/api/v2/cities",
     headers: {
@@ -195,10 +178,13 @@ $scope.testValidation=function(){
       setTimeout(init, 200);
     },
     function errorCallback(response) {
+      $scope.getCityStart();
       console.log(response);
     }
   );
-  /// GET DISTRICT
+}
+$scope.getCityStart();
+$scope.getDistrictStart =function(){
   $http({
     method: "GET",
     url: "http://sandbox.goship.io/api/v2/districts?page=1&size=1000",
@@ -211,11 +197,16 @@ $scope.testValidation=function(){
   }).then(
     function successCallback(response) {
       $rootScope.district = response.data;
+      console.log($rootScope.district)
     },
     function errorCallback(response) {
+      $scope.getDistrictStart()
       console.log(response);
     }
   );
+}
+$scope.getDistrictStart();
+ 
 
   $scope.getDistrictAfterSelectProvince = function () {
     $timeout(function () {
@@ -284,6 +275,7 @@ $scope.testValidation=function(){
           setTimeout(setEventAfterClickWard, 200, "ward");
         },
         function errorCallback(response) {
+          $scope.getWardAfterSelectDistrict()
           console.log(response);
         }
       );
@@ -310,6 +302,7 @@ $scope.testValidation=function(){
         // $rootScope.phigiaohang.data.forEach
       },
       function errorCallback(response) {
+        $scope.calculateFeeALL()
         console.log(response);
       }
     );

@@ -43,6 +43,7 @@ public class Orders implements Serializable{
 	Float totalmoney;
 	String address;
 	String paymentmethod;
+	String phonenumber;
 	@ManyToOne
 	@JoinColumn(name = "Orderstatusid")
 	OrderStatus orderstatus; 
@@ -107,7 +108,13 @@ public class Orders implements Serializable{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getPhonenumber() {
+		return address;
+	}
 
+	public void setPhonenumber(String address) {
+		this.phonenumber = address;
+	}
 	public String getPaymentmethod() {
 		return paymentmethod;
 	}

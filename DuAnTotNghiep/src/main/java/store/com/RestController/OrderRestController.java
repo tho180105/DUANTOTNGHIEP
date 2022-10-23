@@ -2,6 +2,8 @@ package store.com.RestController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,8 @@ public class OrderRestController {
 	AccountDAO adao;
 	@Autowired
 	Orders o;
+	@Autowired
+	HttpSession se;
 	@GetMapping
 	public List<Orders> getOders() {
 		return dao.findAll();

@@ -2,9 +2,12 @@ package store.com.Service;
 
 import java.util.List;
 
-import store.com.Entity.Category;
+import org.springframework.stereotype.Service;
 
+import store.com.Entity.Category;
+@Service
 public interface CategoryService {
+    
 	public List<Category> findAll() ;
 
 	public Category findById(String id) ;

@@ -36,11 +36,15 @@
         <section class="shopping-cart spad d-flex  justify-content-center ">
             <div style="width: 90%; margin-top: -50px !important">
                 <div class="row ">
-                  <div class="col-12 text-center">
-                    Cảm ơn quý khách đã mua hàng, mã đơn hàng là :[[${orderid}]] <br>
-                    Có thể xem trạng thái của đơn hàng tại : google.com <br>
-                    Chúc quý khách mua hàng vui vẻ !
-                  </div>
+                    <div class="col-12 text-center" style="line-height: 29px">
+                        <form action="">
+                            Cảm ơn quý khách đã mua hàng, mã đơn hàng là :[[${orderid}]] <br>
+                            Có thể xem trạng thái của đơn hàng tại : google.com <br>
+                            Chúc quý khách mua hàng vui vẻ !   <br>
+                            <button class="btn btn-success mt-2" formaction="/product/list">Quay lại mua hàng</button>
+                        </form>
+
+                    </div>
                 </div>
             </div>
         </section>

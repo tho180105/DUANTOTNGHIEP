@@ -120,7 +120,6 @@ public class CartRestController {
 		}
 		se.removeAttribute("detailCartWaiting");
 		se.setAttribute("detailCartWaiting", detailCartSession);
-		
 	}
 
 }
