@@ -23,15 +23,17 @@
 					<div class="col-lg-6 offset-lg-3">
 						<div class="register-form">
 							<h2>Register</h2>
-							<form action="/register/check" method="post" th:object="${sv}" >
+							<form th:action="@{/register/check}" method="post" th:object="${sv}" >
 								 <div class="group-input">
 									<label for="username">Username</label> <input
-										type="text" id="username" th:field="*{accountid}">
+										type="text" id="username" th:field="*{accountid}"> <br>
+									 <i class="text-danger" th:errors="*{accountid}"></i>
 								</div> 
 								
 							 	<div class="group-input">
 									<label for="pass">Password *</label> <input type="password"
-										id="pass" th:field="*{password}">
+										id="pass" th:field="*{password}"> <br>
+									<i class="text-danger" th:errors="*{password}"></i>
 								</div>
 								<div class="group-input">
 									<label for="con-pass">Confirm Password *</label> <input
@@ -39,12 +41,9 @@
 								</div>
 								<div class="group-input">
 									<label for="email">Email *</label> <input
-										type="email" id="email" th:field="*{email}">
+										type="email" id="email" th:field="*{email}"><br>
+									<i class="text-danger" th:errors="*{email}"></i>
 								</div>
-								<div class="group-input">
-									<label for="phone">Phone *</label> <input
-										type="text" id="phone" th:field="*{phonenumber}">
-								</div> 
 								<i class="pull-left text-danger" th:text="${message}"></i>
 								<button type="submit" class="site-btn register-btn">REGISTER</button>
 							</form>
