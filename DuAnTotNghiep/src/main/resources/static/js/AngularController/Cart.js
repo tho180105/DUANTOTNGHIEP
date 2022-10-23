@@ -1,5 +1,4 @@
 const app = angular.module("app", []);
-
 app.controller("cart-ctrl", function ($rootScope, $http, $scope, $timeout) {
   // $rootscope.detailCarts=[]
   $http.get(`/rest/cart`).then((resp) => {

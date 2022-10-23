@@ -25,9 +25,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
+
 @Entity 
 @Component
 @Table(name="orders")
@@ -52,11 +50,11 @@ public class Orders implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="orders")
 	List<DetailOrder> orderdetails;
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "Accountid")
 	Account account;
 
-	public Orders() {
+	public Orders() { 
 		super();
 	}
 

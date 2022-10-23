@@ -13,9 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
+
 @Entity 
 @Table(name="Detailorder")
 public class DetailOrder implements Serializable{

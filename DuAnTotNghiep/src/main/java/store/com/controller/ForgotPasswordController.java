@@ -6,6 +6,7 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -79,4 +80,20 @@ public class ForgotPasswordController {
     public static int randomNumber(int min, int max) {
         return generator.nextInt((max - min) + 1) + min;
     }
+
+
+
+    // xem list đơn hàng đã đặt
+    @RequestMapping("/listorder")
+    public String listOrder(Model model){
+
+        return "/order/ListOrder";
+    }
+
+     // xem list đơn hàng đã đặt
+     @RequestMapping("/detailorder/{id}")
+     public String detailOrder(Model model,@PathVariable("id") String id){
+ 
+         return "/order/DetailOrder";
+     }
 }
