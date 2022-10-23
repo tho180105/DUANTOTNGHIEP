@@ -2,7 +2,10 @@ package store.com.Service;
 
 import java.util.List;
 
+
+
 import store.com.Entity.Category;
+
 
 public interface CategoryService {
 	public List<Category> findAll() ;

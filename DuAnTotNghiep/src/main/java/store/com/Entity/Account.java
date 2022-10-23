@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -57,8 +58,12 @@ public class Account implements Serializable{
 	@OneToMany(mappedBy="account")
 	List<Orders>  orders ;
 	@JsonIgnore
-	@OneToMany(mappedBy="account")
+	@OneToMany(mappedBy="account", 
+	        orphanRemoval = true,
+	        cascade = CascadeType.ALL
+	        )
 	List<ProductDiscount>  productDiscounts ;
+	
 	public String getAccountId() {
 		return accountid;
 	}
@@ -150,6 +155,10 @@ public class Account implements Serializable{
 		this.productDiscounts = productDiscounts;
 	}
 	
+	public Account() {
+        super();
+    }
+	
 	public Account(String accountId, String password, String email, String avatar, Integer coin, String phonenumber,
 			Date createdate, String status, Role role, List<Rate> rates, List<Response> responses,
 			List<DetailCart> detailCarts, List<Address> addresses, List<Orders> orders,
@@ -171,8 +180,6 @@ public class Account implements Serializable{
 		this.orders = orders;
 		this.productDiscounts = productDiscounts;
 	}
-	public Account() {
-		super();
-	}
+	
 	
 }

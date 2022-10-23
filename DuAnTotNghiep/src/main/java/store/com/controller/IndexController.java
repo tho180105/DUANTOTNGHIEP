@@ -21,20 +21,18 @@ import store.com.Entity.Category;
 
 @Controller
 public class IndexController {
-	
+    SessionService se;
+    
 	@Autowired
 	CategoryDAO categoryDAO;
-	 
+	
 	@RequestMapping("/home")
 	public String home1(Model model) {
 		List<Category> list = categoryDAO.findAll(); 
 		model.addAttribute("cates", list); 
+		return "home/home";
 	}
-	SessionService se;
-	
-	
-	
-	
+
 	@RequestMapping("/faq")
 	public String faq() {
 		return "home/faq";
@@ -54,46 +52,5 @@ public class IndexController {
 	public String blogdetail() {
 		return "blog/blog-detail";
 	}
-	@Autowired
-	CategoryDAO categoryDAO;
-	CategoryService categoryService;
-	
-	@RequestMapping("/category")
-	@ResponseBody
-	public List<Category> category(Model model) {
-		Category category = new Category();
-		model.addAttribute("form", category);
-		List<Category> map = categoryDAO.findAll();
-		model.addAttribute("items", map);
-		return map;
-	}
-	
-	@RequestMapping("/category/edit/{key}")
-	@ResponseBody
-	public Category edit(Model model, @PathVariable("key") Integer key) {
-		model.addAttribute("key", key);
-		Category category = categoryDAO.findById(key).get();
-		model.addAttribute("form", category);
-		List<Category> map = categoryDAO.findAll();
-		model.addAttribute("items", map);
-		return category;
-	}
-	
-	@RequestMapping("/category/create")
-	public String create(Category student) {
-		categoryService.create(student);
-		return "redirect:thi/index";
-	}
-	
-	@RequestMapping("/category/update/{key}")
-	public String update(@PathVariable("key") String key, Category student) {
-		categoryDAO.save(student);
-		return "redirect:thi/edit/" + key;
-	}
-	
-	@RequestMapping("/category/delete/{key}")
-	public String delete(@PathVariable("key") String key) {
-		categoryService.delete(key);
-		return "redirect:thi/index";
-	}
+
 }
