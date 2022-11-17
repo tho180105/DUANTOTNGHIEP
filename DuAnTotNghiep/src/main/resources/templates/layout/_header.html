@@ -1,4 +1,4 @@
-<div xmlns:th="http://www.thymeleaf.org">
+<div xmlns:th="http://www.thymeleaf.org" taglib uri="http://www.springframework.org/tags" prefix="s">
         <div class="header-top">
             <div class="container">
                 <div class="ht-left">
@@ -12,13 +12,23 @@
                     </div>
                 </div>
                 <div class="ht-right">
-                    <a href="/security/login/form" class="login-panel"><i class="fa fa-user"></i>Login</a>
-                    <div class="lan-selector">
-                        <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="/img/flag-1.jpg" data-imagecss="flag yt"
+                	<th:block th:if="${#request.remoteUser}">
+                	<a href="/logoff" class="login-panel">Đăng xuất</a>
+                    	<a href="/account" class="login-panel"><i class="fa fa-user"></i>[(#{header.profile})]</a>
+                     </th:block>
+                     <th:block th:unless="${#request.remoteUser}">
+                     
+                     	<a href="/security/login/form" class="login-panel"><i class="fa fa-user"></i>[(#{header.login})]</a>
+                     	
+                     </th:block>
+                    <div class="lan-selector" ng-controller="DetailOrder-ctrl">
+                        <select class="language_drop" name="countries" 
+                        onchange="Dann(this.options[this.selectedIndex].value)"
+                         id="countries" style="width:300px;">
+                            <option value='eng' data-image="/img/flag-1.jpg" id="eng" data-imagecss="flag yt" 
                                 data-title="English">English</option>
-                            <option value='yu' data-image="/img/flag-2.jpg" data-imagecss="flag yu"
-                                data-title="Bangladesh">German </option>
+                            <option value='vi' data-image="/img/flag-2.jpg" id="vi" data-imagecss="flag yu"
+                                data-title="Bangladesh"  selected >Vietnamese</option>
                         </select>
                     </div>
                     <div class="top-social">

@@ -1,37 +1,52 @@
-var detailOrder1;
 app.controller("ListOrder-ctrl", function ($rootScope, $scope, $http) {
 
 	$http.get("/rest/ListOrder/order").then(resp => {
+		
 		$rootScope.order = resp.data;
-	})
-	$http.get("/rest/ListOrder/detail").then(resp => {
-		$scope.listDetailOrder = resp.data;
-		$scope.checkOrder()
 		console.log($rootScope.order)
+		$http.get("/rest/ListOrder/detail").then(resp => {
+			$scope.listDetailOrder = resp.data;
+			$scope.checkOrder($rootScope.order)
+		})	
+	})
+	$http.get("/rest/ListOrder/order").then(resp => {
+		$scope.tempOrder = resp.data;
 	})
 
-
-	$scope.checkOrder = function () {
-		for (let i = 0; i < $rootScope.order.length; i++) {
+	$scope.checkOrder = function (order) {
+		for (let i = 0; i < order.length; i++) {
 			var item = [];
 			var totalPrice = 0;
 			for (let j = 0; j < $scope.listDetailOrder.length; j++) {
-				if ($rootScope.order[i].orderid == $scope.listDetailOrder[j].orders.orderid) {
+				if (order[i].orderid == $scope.listDetailOrder[j].orders.orderid) {
 					item.push($scope.listDetailOrder[j]);
 					totalPrice += $scope.listDetailOrder[j].productprice * $scope.listDetailOrder[j].quantity;
 				}
 			}
-			$rootScope.order[i].totalmoneyFormat = new Intl.NumberFormat('de-DE').format($rootScope.order[i].totalmoney);
-			$rootScope.order[i].detailorder = item;
-			$rootScope.order[i].totalPrice = totalPrice;
+			order[i].totalmoneyFormat = new Intl.NumberFormat('de-DE').format(order[i].totalmoney);
+			order[i].detailorder = item;
+			order[i].totalPrice = totalPrice;
 		}
 	}
 
 	$scope.link = function (item) {
-		$rootScope.detailOrder1 = item;
-		detailOrder1 = item;
 		location.href = "/detailorder/" + item.orderid;
-		console.log(detailOrder1);
+	}
+
+	$scope.cancelOrder = function (item){
+		var tempOrder =$scope.tempOrder.findIndex(x => x.orderid == item);
+		$scope.tempOrder[tempOrder].orderstatus.orderstatusid=3;
+		$scope.tempOrder[tempOrder].createdate = new Date($scope.tempOrder[tempOrder].createdate);
+		console.log($scope.tempOrder[tempOrder]);
+		var index = $scope.order.findIndex(x => x.orderid ==item);
+		$scope.order[index].orderstatus.orderstatusid =3;
+		$scope.order[index].orderstatus.orderstatustitle ="Đã hủy";
+		$http.put("/rest/order",$scope.tempOrder[tempOrder]).then(resp =>{
+			
+			console.log($scope.order[index]);
+		}).catch(error => {
+			console.log("lỗi");
+		})
 	}
 
 })
@@ -43,12 +58,6 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 		$scope.detailOrder = resp.data;
 		// xử lý ngày tháng năm
 		$scope.detailOrder[0].orders.createdate = new Date($scope.detailOrder[0].orders.createdate);
-		let day = $scope.detailOrder[0].orders.createdate.getDate();
-		console.log(day); // 23
-		let month = $scope.detailOrder[0].orders.createdate.getMonth();
-		console.log(month); // 8
-		let year = $scope.detailOrder[0].orders.createdate.getFullYear();
-		$scope.detailOrder[0].orders.createdate = day + "/" + (month+1) + "/" + year;
 		// format tiền (10.000,00)
 		$scope.detailOrder[0].orders.totalNoneDiscount = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.shipfee + $scope.detailOrder[0].orders.productmoney);
 		$scope.detailOrder[0].orders.productmoney = new Intl.NumberFormat('de-DE').format($scope.detailOrder[0].orders.productmoney);
@@ -63,4 +72,15 @@ app.controller("DetailOrder-ctrl", function ($rootScope, $scope, $http) {
 	}).catch(error => {
 		console.log(error);
 	})
+	$scope.test123="selected";
 })
+
+
+function Dann(x){
+	var id = document.getElementById(x);
+	document.querySelector('#'+x).selected  = true;
+	console.log(document.querySelector('#'+x))
+	window.history.pushState('page2', 'Title', '?lang='+x);
+	location.href = "?lang="+x;
+
+}

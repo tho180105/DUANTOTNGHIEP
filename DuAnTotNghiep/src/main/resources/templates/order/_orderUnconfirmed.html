@@ -1,6 +1,7 @@
 <div >
   
-    <div class="card mb-4" ng-repeat="item in order | filter : 'Chưa xử lý': true">
+    <div class="card mb-4" 
+    ng-repeat="item in order | filter :{ orderstatus: {orderstatustitle:'Chưa xử lý' }}">
       
       <div class="card-body">
         <span style="font-family: Arial, Helvetica, sans-serif; color:rgb(138, 134, 134);">
@@ -46,7 +47,7 @@
                 <div class="col-2"></div>
                 <div class="button-group col-10 ">
                   <p class="ml-2 col-2"></p>
-                  <div class="ml-2" ng-click="link(item)">Hủy đơn hàng</div>
+                  <div class="ml-2" ng-click="cancelOrder(item.orderid)">Hủy đơn hàng</div>
                 </div>
               </div>
   

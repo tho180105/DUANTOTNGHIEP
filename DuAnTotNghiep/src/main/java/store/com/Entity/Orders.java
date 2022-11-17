@@ -54,121 +54,98 @@ public class Orders implements Serializable{
 	@ManyToOne 
 	@JoinColumn(name = "Accountid")
 	Account account;
-
-	public Orders() { 
-		super();
-	}
-
-	public Integer getOrderid() {
-		return orderid;
-	}
-
-	public void setOrderid(Integer orderid) {
-		this.orderid = orderid;
-	}
-
-	public Date getCreatedate() {
-		return createdate;
-	}
-
-	public void setCreatedate(Date createdate) {
-		this.createdate = createdate;
-	}
-
-	public Float getShipfee() {
-		return shipfee;
-	}
-
-	public void setShipfee(Float shipfee) {
-		this.shipfee = shipfee;
-	}
-
-	public Float getProductmoney() {
-		return productmoney;
-	}
-
-	public void setProductmoney(Float productmoney) {
-		this.productmoney = productmoney;
-	}
-
-	public Float getTotalmoney() {
-		return totalmoney;
-	}
-
-	public void setTotalmoney(Float totalmoney) {
-		this.totalmoney = totalmoney;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getPhonenumber() {
-		return address;
-	}
-
-	public void setPhonenumber(String address) {
-		this.phonenumber = address;
-	}
-	public String getPaymentmethod() {
-		return paymentmethod;
-	}
-
-	public void setPaymentmethod(String paymentmethod) {
-		this.paymentmethod = paymentmethod;
-	}
-
-	public OrderStatus getOrderstatus() {
-		return orderstatus;
-	}
-
-	public void setOrderstatus(OrderStatus orderstatus) {
-		this.orderstatus = orderstatus;
-	}
-
-	public Voucher getVoucher() {
-		return voucher;
-	}
-
-	public void setVoucher(Voucher voucher) {
-		this.voucher = voucher;
-	}
-	@JsonIgnore
-	public List<DetailOrder> getOrderdetails() {
-		return orderdetails;
-	}
-
-	public void setOrderdetails(List<DetailOrder> orderdetails) {
-		this.orderdetails = orderdetails;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public Orders(Integer orderid, Date createdate, Float shipfee, Float productmoney, Float totalmoney, String address,
-			String paymentmethod, OrderStatus orderstatus, Voucher voucher, List<DetailOrder> orderdetails,
-			Account account) {
-		super();
-		this.orderid = orderid;
-		this.createdate = createdate;
-		this.shipfee = shipfee;
-		this.productmoney = productmoney;
-		this.totalmoney = totalmoney;
-		this.address = address;
-		this.paymentmethod = paymentmethod;
-		this.orderstatus = orderstatus;
-		this.voucher = voucher;
-		this.orderdetails = orderdetails;
-		this.account = account;
-	}
+    public Integer getOrderid() {
+        return orderid;
+    }
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
+    }
+    public Date getCreatedate() {
+        return createdate;
+    }
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
+    }
+    public Float getShipfee() {
+        return shipfee;
+    }
+    public void setShipfee(Float shipfee) {
+        this.shipfee = shipfee;
+    }
+    public Float getProductmoney() {
+        return productmoney;
+    }
+    public void setProductmoney(Float productmoney) {
+        this.productmoney = productmoney;
+    }
+    public Float getTotalmoney() {
+        return totalmoney;
+    }
+    public void setTotalmoney(Float totalmoney) {
+        this.totalmoney = totalmoney;
+    }
+    public String getAddress() {
+        return address;
+    }
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    public String getPaymentmethod() {
+        return paymentmethod;
+    }
+    public void setPaymentmethod(String paymentmethod) {
+        this.paymentmethod = paymentmethod;
+    }
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+    public OrderStatus getOrderstatus() {
+        return orderstatus;
+    }
+    public void setOrderstatus(OrderStatus orderstatus) {
+        this.orderstatus = orderstatus;
+    }
+    public Voucher getVoucher() {
+        return voucher;
+    }
+    public void setVoucher(Voucher voucher) {
+        this.voucher = voucher;
+    }
+    public List<DetailOrder> getOrderdetails() {
+        return orderdetails;
+    }
+    public void setOrderdetails(List<DetailOrder> orderdetails) {
+        this.orderdetails = orderdetails;
+    }
+    public Account getAccount() {
+        return account;
+    }
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+    public Orders(Integer orderid, Date createdate, Float shipfee, Float productmoney, Float totalmoney, String address,
+            String paymentmethod, String phonenumber, OrderStatus orderstatus, Voucher voucher,
+            List<DetailOrder> orderdetails, Account account) {
+        super();
+        this.orderid = orderid;
+        this.createdate = createdate;
+        this.shipfee = shipfee;
+        this.productmoney = productmoney;
+        this.totalmoney = totalmoney;
+        this.address = address;
+        this.paymentmethod = paymentmethod;
+        this.phonenumber = phonenumber;
+        this.orderstatus = orderstatus;
+        this.voucher = voucher;
+        this.orderdetails = orderdetails;
+        this.account = account;
+    }
+    public Orders() {
+        super();
+    }
 
 
 	@Override
