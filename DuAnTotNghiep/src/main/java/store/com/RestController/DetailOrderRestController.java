@@ -30,7 +30,7 @@ public class DetailOrderRestController {
     @PostMapping
     public DetailOrder create(@RequestBody DetailOrder detailOrder, Authentication auth) {
        ProductRepository product= prdao.getById(detailOrder.getProductrepository().getProductrepositoryid());
-        product.setQuantity(detailOrder.getQuantity()-detailOrder.getQuantity());
+        product.setQuantity(product.getQuantity()-detailOrder.getQuantity());
         prdao.save(product);
         return dao.save(detailOrder);
     }
