@@ -37,4 +37,16 @@ public class UploadImageRestController {
         
         return node;
     }
+    
+    @PostMapping("/rest/uploadImageVoucher/{folder}")
+    public JsonNode saveVoucher(@PathParam("file") MultipartFile file, 
+            @PathVariable("folder") String folder) {
+        File saveFile = uploadService.save(file, "/voucher/"+folder);
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode node = mapper.createObjectNode();
+        node.put("name", saveFile.getName());
+        node.put("size", saveFile.length());
+        
+        return node;
+    }
 }

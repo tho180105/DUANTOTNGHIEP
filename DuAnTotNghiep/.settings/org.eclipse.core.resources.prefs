@@ -4,6 +4,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/i18n/footer_vi.properties=UTF-8
+encoding//src/main/resources/i18n/header_vi.properties=UTF-8
+encoding//src/main/resources/i18n/menu_en.properties=UTF-8
+encoding//src/main/resources/i18n/menu_vi.properties=UTF-8
 encoding//src/main/resources/static/Admin/ThongKeDoanhThu.html=UTF-8
 encoding//src/main/resources/static/Admin/ThongKeDonHang.html=UTF-8
 encoding//src/main/resources/static/Admin/ThongKeSanPham.html=UTF-8

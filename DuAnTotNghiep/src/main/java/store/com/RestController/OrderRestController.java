@@ -14,9 +14,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import store.com.DAO.AccountDAO;
 import store.com.DAO.OrdersDAO;
@@ -68,5 +71,12 @@ public class OrderRestController {
 		}
 		return dao.save(orders);
 	}
-
+	
+	@PutMapping
+	public Orders update(@RequestBody Orders orders) {
+		System.out.println(orders.getOrderid());
+		System.out.println(orders.getOrderstatus().getOrderstatusid());
+		return dao.save(orders);
+	}
+	
 }

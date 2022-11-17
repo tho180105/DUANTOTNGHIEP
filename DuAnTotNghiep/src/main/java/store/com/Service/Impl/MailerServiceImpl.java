@@ -1,6 +1,7 @@
 package store.com.Service.Impl;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import store.com.DAO.RegistrationDAO;
 import store.com.Entity.MailInfo;
+import store.com.Entity.Registration;
 import store.com.Service.MailerService;
 
 @Service
@@ -66,10 +69,11 @@ public class MailerServiceImpl implements MailerService {
 		queue(new MailInfo(to, subject, body));
 	}
 
-	@Scheduled(fixedDelay = 5000)
+	@Scheduled(fixedRate  = 5000)
 	public void run() {
 		while (!queue.isEmpty()) {
-			MailInfo mail = queue.remove(0);
+			MailInfo mail = queue.get(0);
+			queue.remove(0);
 			try {
 				send(mail);
 			} catch (Exception e) {
@@ -77,4 +81,6 @@ public class MailerServiceImpl implements MailerService {
 			}
 		}
 	}
+	
+	
 }

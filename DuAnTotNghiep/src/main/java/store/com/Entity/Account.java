@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,6 +34,7 @@ public class Account implements Serializable{
 	@NotBlank(message = "Không được bỏ trống mật khẩu")
 	String password;
 	@NotBlank(message = "Không được bỏ trống email")
+	@Email(message = "Email không đúng định dạng")
 	String email;
 	String avatar;
 	Integer coin;
@@ -61,10 +63,7 @@ public class Account implements Serializable{
 	@OneToMany(mappedBy="account")
 	List<Orders>  orders ;
 	@JsonIgnore
-	@OneToMany(mappedBy="account", 
-	        orphanRemoval = true,
-	        cascade = CascadeType.ALL
-	        )
+	@OneToMany(mappedBy = "account")
 	List<ProductDiscount>  productDiscounts ;
     public String getAccountid() {
         return accountid;

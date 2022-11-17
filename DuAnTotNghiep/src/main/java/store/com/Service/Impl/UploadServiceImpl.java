@@ -10,11 +10,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import store.com.Service.UploadService;
 
-
 @Service
 public class UploadServiceImpl implements UploadService{
-	@Autowired
-	ServletContext app;
+    @Autowired
+    ServletContext app;
 
 	public File save(MultipartFile file, String folder) {
 		File dir = new File(app.getRealPath("/Admin/assets/img/"+folder));
@@ -37,4 +36,8 @@ public class UploadServiceImpl implements UploadService{
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
+	
+	
 }

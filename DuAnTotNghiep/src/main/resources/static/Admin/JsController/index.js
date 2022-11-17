@@ -42,6 +42,11 @@ app.config(function($routeProvider) {
 			templateUrl: "/Admin/QuanLyBanner.html",
 			controller: "banner-ctrl"
 		})
+		
+		.when("/QuanLyVoucher", {
+			templateUrl: "/Admin/QuanLyVoucher.html",
+			controller: "vouchers-ctrl"
+		})
 
 		.when("/MyProfile", {
 			templateUrl: "./index2.html"
@@ -54,6 +59,13 @@ app.config(function($routeProvider) {
 
 		.when("/cart/order", {
 			templateUrl: "./cart/order.html"
+		})
+		.when("/Authority", {
+			templateUrl: "/Admin/Authority.html",
+			controller: "Authority-ctrl"
+		})
+		.when("/unauthorized", {
+			templateUrl: "/Admin/Unauthorized.html",
 		})
 		.otherwise({
 			redirectTo: "/main"
