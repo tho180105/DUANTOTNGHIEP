@@ -31,7 +31,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/security/login/success")
-	public String success(Model model,Authentication auth ){
+	public String success(Model model,Authentication auth){
 		if(cookie.get("remember-me")!=null) {
 			Cookie acc = cookie.get("JSESSIONID");
 			cookie.add("JSESSIONID", acc.getValue(), 24*30);
@@ -66,7 +66,7 @@ public class LoginController {
 		return "security/login";
 	}
 	
-	@RequestMapping("/admin/test")
+	@RequestMapping("/admin/test") 
 	public String test(Model model) {
 		return "home/home";
 	}

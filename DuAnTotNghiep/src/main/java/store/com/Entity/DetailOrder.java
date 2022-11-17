@@ -3,6 +3,8 @@ package store.com.Entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,13 +15,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
+
 @Entity 
 @Table(name="Detailorder")
 public class DetailOrder implements Serializable{
 	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	Integer detailorderid;
 	Float productprice;
 	Integer quantity;
@@ -86,12 +87,7 @@ public class DetailOrder implements Serializable{
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	public ProductRepository getProductRepository() {
-		return productrepository;
-	}
-	public void setProductRepository(ProductRepository productRepository) {
-		this.productrepository = productRepository;
-	}
+	
 	public Orders getOrders() {
 		return orders;
 	}

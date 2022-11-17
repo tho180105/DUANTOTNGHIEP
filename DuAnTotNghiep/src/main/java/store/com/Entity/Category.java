@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,13 +21,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity 
+@Table(name="Category")
 public class Category implements Serializable{
 	@Id
-	Integer categoryid;
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	Integer categoryid; 
 	String categoryname;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "categogy")
+	@OneToMany(mappedBy = "category")
 	List<Product> products;
+	
 	public Integer getCategoryid() {
 		return categoryid;
 	}

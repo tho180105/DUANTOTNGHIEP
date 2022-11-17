@@ -2,16 +2,19 @@ package store.com.Service;
 
 import java.util.List;
 
-import store.com.Entity.Category;
+import org.springframework.stereotype.Service;
 
+import store.com.Entity.Category;
+@Service
 public interface CategoryService {
+    
 	public List<Category> findAll() ;
 
-	public Category findById(String id) ;
+	public Category findById(Integer id) ;
 
 	public Category create(Category category) ;
 
 	public Category update(Category category) ;
 
-	public void delete(String id) ;
+	public void delete(Integer id) ;
 }

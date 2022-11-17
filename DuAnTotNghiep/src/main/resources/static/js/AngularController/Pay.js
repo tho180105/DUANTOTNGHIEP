@@ -102,21 +102,68 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
         String(ward) +
         ", " +
         String($scope.detailAddressOrder);
+
       $scope.newOrder.orderstatus = {};
       $scope.newOrder.orderstatus.orderstatusid = 1;
-      $scope.newOrder.voucher = {};
-      $scope.newOrder.voucher.voucherid = $scope.voucherApplyId;
+      if($scope.voucherApplyId!=null){
+        $scope.newOrder.voucher = {};
+        $scope.newOrder.voucher.voucherid = $scope.voucherApplyId;
+      }
       $scope.newOrder.productmoney = $scope.subTotalMoney;
       $scope.newOrder.shipfee = $scope.shipfee;
+      $scope.newOrder.phonenumber =document.getElementById("phoneNumber").value;
       $scope.newOrder.totalmoney = $scope.calculateTotalMoney();
       $http.post("/rest/order", $scope.newOrder).then((resp) => {
         console.log(resp.data);
+        $rootScope.orderIdPayed=resp.data.orderid;
+        $scope.addDetailOrdersFinish(resp.data.orderid);
       });
     });
   };
 
+  $scope.addDetailOrdersFinish = function (orderid) {
+    for (const iterator of $rootScope.productsSelected) {
+      $scope.newDetailOrder = {};
+      $scope.newDetailOrder.productprice =    iterator.productRepository.product.sellingprice;
+      $scope.newDetailOrder.productrepository = {};
+      $scope.newDetailOrder.productrepository.productrepositoryid = iterator.productRepository.productrepositoryid;
+      $scope.newDetailOrder.orders = {};
+      $scope.newDetailOrder.orders.orderid = orderid
+      $scope.newDetailOrder.quantity = iterator.quantity
+        $http.post("/rest/detailorder", $scope.newDetailOrder)
+        .then((resp) => {
+        });
+        $http.delete("/rest/cart/"+iterator.detailcartid)
+        .then((resp) => {
+          console.log(resp.data)
+        });
+    }
+    location.href="/cart/order/"+$rootScope.orderIdPayed
+  };
+
+
+
+$scope.testValidation=function(){
+  var x =document.getElementById("form_order")
+  if (x.checkValidity()) {
+     $scope.finishOrder()
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
   ///GET CITY
-  $http({
+ $scope.getCityStart=function(){
+ $http({
     method: "GET",
     url: "http://sandbox.goship.io/api/v2/cities",
     headers: {
@@ -131,10 +178,13 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
       setTimeout(init, 200);
     },
     function errorCallback(response) {
+      $scope.getCityStart();
       console.log(response);
     }
   );
-  /// GET DISTRICT
+}
+$scope.getCityStart();
+$scope.getDistrictStart =function(){
   $http({
     method: "GET",
     url: "http://sandbox.goship.io/api/v2/districts?page=1&size=1000",
@@ -147,11 +197,16 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
   }).then(
     function successCallback(response) {
       $rootScope.district = response.data;
+      console.log($rootScope.district)
     },
     function errorCallback(response) {
+      $scope.getDistrictStart()
       console.log(response);
     }
   );
+}
+$scope.getDistrictStart();
+ 
 
   $scope.getDistrictAfterSelectProvince = function () {
     $timeout(function () {
@@ -215,15 +270,16 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
         },
       }).then(
         function successCallback(response) {
-          $rootScope.wards = response.data.data;
+            $rootScope.wards = response.data.data;
           //   setTimeout(setEventAfterClick, 300, "ward");
-          setTimeout(setEventAfterClickWard, 300, "ward");
+          setTimeout(setEventAfterClickWard, 200, "ward");
         },
         function errorCallback(response) {
+          $scope.getWardAfterSelectDistrict()
           console.log(response);
         }
       );
-    }, 200);
+    }, 400);
   };
 
   $scope.calculateFeeALL = function () {
@@ -246,6 +302,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
         // $rootScope.phigiaohang.data.forEach
       },
       function errorCallback(response) {
+        $scope.calculateFeeALL()
         console.log(response);
       }
     );
@@ -430,13 +487,7 @@ app.controller("pay-ctrl", function ($rootScope, $http, $scope, $timeout) {
     });
   }
 
-  // Nếu add trùng thì thêm số lượng hoặc khỏi
-  // Add mơi set account id là user đăng nhập ,quantity =1, productRepository từ link add
-  // Từ list productreposiry tìm ra theo id,
-  // page 1 : subtotal : display:flex
-  //Tính tiền sub
-  // Khi radio phí thì tính
-  // Get discout thì tính toán và hiệu ứng
-  // Khi phi thay doi thì cap nhat lai
-  //Lay sẩn pham bên Cart
+
+
+
 });

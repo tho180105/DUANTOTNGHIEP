@@ -26,7 +26,6 @@ public class UserService implements UserDetailsService{
 			String password = account.getPassword();
 			String role = account.getRole().getRoleid();
 			System.out.println(role);
-
 			return User.withUsername(username).password(pe.encode(password)).roles(role).build();
 		} catch (Exception e) {
 			// TODO: handle exception

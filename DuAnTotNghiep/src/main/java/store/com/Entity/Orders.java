@@ -25,9 +25,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
-@Data
-@Getter
-@Setter
+
 @Entity 
 @Component
 @Table(name="orders")
@@ -43,6 +41,7 @@ public class Orders implements Serializable{
 	Float totalmoney;
 	String address;
 	String paymentmethod;
+	String phonenumber;
 	@ManyToOne
 	@JoinColumn(name = "Orderstatusid")
 	OrderStatus orderstatus; 
@@ -52,11 +51,11 @@ public class Orders implements Serializable{
 	@JsonIgnore
 	@OneToMany(mappedBy="orders")
 	List<DetailOrder> orderdetails;
-	@ManyToOne
+	@ManyToOne 
 	@JoinColumn(name = "Accountid")
 	Account account;
 
-	public Orders() {
+	public Orders() { 
 		super();
 	}
 
@@ -107,7 +106,13 @@ public class Orders implements Serializable{
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getPhonenumber() {
+		return address;
+	}
 
+	public void setPhonenumber(String address) {
+		this.phonenumber = address;
+	}
 	public String getPaymentmethod() {
 		return paymentmethod;
 	}
@@ -131,7 +136,7 @@ public class Orders implements Serializable{
 	public void setVoucher(Voucher voucher) {
 		this.voucher = voucher;
 	}
-
+	@JsonIgnore
 	public List<DetailOrder> getOrderdetails() {
 		return orderdetails;
 	}
