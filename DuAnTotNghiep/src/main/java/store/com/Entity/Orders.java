@@ -147,9 +147,22 @@ public class Orders implements Serializable{
         super();
     }
 
-	
 
-
-
-	
+	@Override
+	public String toString() {
+		return "Orders{" +
+				"orderid=" + orderid +
+				", createdate=" + createdate +
+				", shipfee=" + shipfee +
+				", productmoney=" + productmoney +
+				", totalmoney=" + totalmoney +
+				", address='" + address + '\'' +
+				", paymentmethod='" + paymentmethod + '\'' +
+				", phonenumber='" + phonenumber + '\'' +
+				", orderstatus=" + orderstatus +
+				", voucher=" + voucher +
+				", orderdetails=" + orderdetails +
+				", account=" + account +
+				'}';
+	}
 }

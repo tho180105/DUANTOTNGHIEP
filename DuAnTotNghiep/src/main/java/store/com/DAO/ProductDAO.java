@@ -43,4 +43,6 @@ public interface ProductDAO extends JpaRepository<Product, Integer>{
 //    Integer getTotal();
 	@Query("SELECT p FROM Product p WHERE p.category.categoryid = ?1")
     List<Product> findByCategoryId(Integer integer);
+
+	
 }

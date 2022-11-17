@@ -3,6 +3,7 @@ package store.com.Entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -132,7 +133,34 @@ public class Voucher implements Serializable{
 		KOLvouchers = kOLvouchers;
 		Orders = orders;
 	}
-	
-	
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Voucher voucher = (Voucher) o;
+		return Objects.equals(voucherid, voucher.voucherid);
+	}
+
+	@Override
+	public String toString() {
+		return "Voucher{" +
+				"voucherid='" + voucherid + '\'' +
+				", vouchertitle='" + vouchertitle + '\'' +
+				", vouchercontent='" + vouchercontent + '\'' +
+				", minimunmoney=" + minimunmoney +
+				", percentdiscount=" + percentdiscount +
+				", moneydiscount=" + moneydiscount +
+				", quantity=" + quantity +
+				", startdate=" + startdate +
+				", enddate=" + enddate +
+				", KOLvouchers=" + KOLvouchers +
+				", Orders=" + Orders +
+				'}';
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(voucherid);
+	}
 }

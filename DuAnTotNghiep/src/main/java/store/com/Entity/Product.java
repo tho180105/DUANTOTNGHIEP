@@ -32,6 +32,40 @@ public class Product implements Serializable{
 	Float sellingprice;
 	String describe;
 	String mainproductimage;
+	Double purchaseprice;
+
+	public Product(Integer productid, String productname, Float listedprice, Float sellingprice, String describe, String mainproductimage, Double purchaseprice, Style style, Category category, List<AdditionalImages> additionalimagess, List<ProductRepository> productRepositories, List<ProductDiscount> productDiscounts, List<Rate> rates) {
+		this.productid = productid;
+		this.productname = productname;
+		this.listedprice = listedprice;
+		this.sellingprice = sellingprice;
+		this.describe = describe;
+		this.mainproductimage = mainproductimage;
+		this.purchaseprice = purchaseprice;
+		this.style = style;
+		this.category = category;
+		this.additionalimagess = additionalimagess;
+		this.productRepositories = productRepositories;
+		this.productDiscounts = productDiscounts;
+		this.rates = rates;
+	}
+
+	public Double getPurchaseprice() {
+		return purchaseprice;
+	}
+
+	public void setPurchaseprice(Double purchaseprice) {
+		this.purchaseprice = purchaseprice;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
 	@ManyToOne
 	@JoinColumn(name = "Styleid")
 	Style style;

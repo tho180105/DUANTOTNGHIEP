@@ -50,13 +50,7 @@ public class DetailCart implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public ProductRepository getProductRepository() {
-		return productrepository;
-	}
 
-	public void setProductRepository(ProductRepository productRepository) {
-		this.productrepository = productRepository;
-	}
 
 	public Account getAccount() {
 		return account;
