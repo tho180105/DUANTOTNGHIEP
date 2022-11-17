@@ -6,10 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import store.com.DAO.BannerDAO;
 import store.com.DAO.CategoryDAO;
+import store.com.DAO.ProductDiscountDAO;
+import store.com.Entity.Banner;
 import store.com.Entity.Category;
+import store.com.Entity.ProductDiscount;
 import store.com.Service.CategoryService;
 
 
@@ -26,12 +31,34 @@ public class IndexController {
 	@Autowired
 	CategoryDAO categoryDAO;
 	
+	@Autowired
+	BannerDAO bannerDAO;
+	
+	@Autowired
+	ProductDiscountDAO pdDAO;
+	
 	@RequestMapping("/home")
 	public String home1(Model model) {
 		List<Category> list = categoryDAO.findAll(); 
-		model.addAttribute("cates", list); 
+		model.addAttribute("cates", list);
+		
+		List<Banner> banners = bannerDAO.findBannerByDate();
+		model.addAttribute("banners", banners);
+		System.out.println(banners);
+		
+		List<ProductDiscount> discount1 = pdDAO.findProductDiscountByStyleId(1);
+		model.addAttribute("styleList1", discount1);
+		List<ProductDiscount> discount2 = pdDAO.findProductDiscountByStyleId(2);
+        model.addAttribute("styleList2", discount2);
+        List<ProductDiscount> discount3 = pdDAO.findProductDiscountByStyleId(3);
+        model.addAttribute("styleList3", discount3);
+        List<ProductDiscount> discount4 = pdDAO.findProductDiscountByStyleId(4);
+        model.addAttribute("styleList4", discount4);
+		
+		
 		return "home/home";
 	}
+	
 
 	@RequestMapping("/faq")
 	public String faq() {

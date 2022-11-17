@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import store.com.DAO.DetailCartDAO;
+import store.com.DAO.ProductDAO;
 import store.com.DAO.ProductRepositoryDAO;
 import store.com.Entity.DetailCart;
+import store.com.Entity.Product;
 import store.com.Entity.ProductRepository;
 
 @RestController
 @RequestMapping("/rest/productrepository")
 public class ProductRepositoryRestController {
+    @Autowired
+    ProductDAO productDAO;
+    
 	@Autowired
 	ProductRepositoryDAO dao;
 
@@ -35,4 +40,21 @@ public class ProductRepositoryRestController {
 //	public void deleteDetailCart(@PathVariable("id") int detailCartId) {
 //		 dao.delete(dao.findById(detailCartId).get());
 //	}
+	
+	@GetMapping("/{productid}/{sizeid}")
+	public ProductRepository getQtyProductRepository(@PathVariable("productid") Integer productid, @PathVariable("sizeid") String sizeid) {
+	    System.out.println(productid);
+
+	    return dao.getQtyProductRepository(productid, sizeid);
+	}
+	
+	@GetMapping("/rest/productRepository/{id}")
+	public Product getOneProduct(@PathVariable("id") Integer productid) {
+	    return productDAO.getById(productid);
+	}
+	
+	@GetMapping("/{productid}")
+    public Integer sumQuantity(@PathVariable("productid") Integer productid) {
+        return dao.sumQuantity(productid);
+    }
 }

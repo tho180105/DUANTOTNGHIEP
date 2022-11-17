@@ -63,10 +63,7 @@ public class Account implements Serializable{
 	@OneToMany(mappedBy="account")
 	List<Orders>  orders ;
 	@JsonIgnore
-	@OneToMany(mappedBy="account"
-	      //orphanRemoval = true,
-	        //cascade = CascadeType.ALL
-	        )
+	@OneToMany(mappedBy = "account")
 	List<ProductDiscount>  productDiscounts ;
     public String getAccountid() {
         return accountid;

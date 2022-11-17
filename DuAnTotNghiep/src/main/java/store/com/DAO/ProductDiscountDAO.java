@@ -19,4 +19,7 @@ public interface ProductDiscountDAO extends JpaRepository<ProductDiscount, Integ
     
     @Query("SELECT p FROM ProductDiscount p WHERE p.productdiscountid = ?1")
     List<ProductDiscount> findByProductId(Integer integer);
+    
+    @Query("SELECT p FROM ProductDiscount p where p.product.style.styleid = ?1")
+    List<ProductDiscount> findProductDiscountByStyleId(Integer integer);
 }
