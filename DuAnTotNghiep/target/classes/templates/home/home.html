@@ -3,38 +3,27 @@
 	<!-- Hero Section Begin -->
 	    <section class="hero-section">
 	        <div class="hero-items owl-carousel">
-	            <div class="single-hero-items set-bg" data-setbg="img/hero-1.jpg">
-	                <div class="container">
-	                    <div class="row">
-	                        <div class="col-lg-5">
-	                            <span>Bag,kids</span>
-	                            <h1>Black friday</h1>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-	                                incididunt ut labore et dolore</p>
-	                            <a href="#" class="primary-btn">Shop Now</a>
-	                        </div>
-	                    </div>
-	                    <div class="off-card">
-	                        <h2>Sale <span>50%</span></h2>
-	                    </div>
-	                </div>
-	            </div>
-	            <div class="single-hero-items set-bg" data-setbg="img/hero-2.jpg">
-	                <div class="container">
-	                    <div class="row">
-	                        <div class="col-lg-5">
-	                            <span>Bag,kids</span>
-	                            <h1>Black friday</h1>
-	                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-	                                incididunt ut labore et dolore</p>
-	                            <a href="#" class="primary-btn">Shop Now</a>
-	                        </div>
-	                    </div>
-	                    <div class="off-card">
-	                        <h2>Sale <span>50%</span></h2>
-	                    </div>
-	                </div>
-	            </div>
+		        <div th:each="banner, state : ${banners}">
+		        	<div class="single-hero-items set-bg" th:attr="data-setbg='/Admin/assets/img/banner/images/'+${banner.bannerpath}">
+		                <div class="container">
+		                	
+		                    <div class="row">
+		                        <div class="col-lg-5">
+		                            <span>Bag,kids</span>
+		                            <h1>Black friday</h1>
+		                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+		                                incididunt ut labore et dolore</p>
+		                            <a href="#" class="primary-btn">Shop Now</a>
+		                        </div>
+		                    </div>
+		                    <div class="off-card">
+		                        <h2>Sale <span>50%</span></h2>
+		                    </div>
+		                </div>
+		            </div>
+		            
+		        </div>
+	         
 	        </div>
 	    </section>
 	    <!-- Hero Section End -->
@@ -86,395 +75,140 @@
                     <div class="filter-control"> <!--tab-item-->
                         <ul class="nav" role="tablist">
                             <li>
-                                <a class="active" data-toggle="tab" href="#tab-1" role="tab">Clothings</a>
+                                <a class="active" data-toggle="tab" href="#tab-1" role="tab" onclick="getStyle('1')" name="tab">Thanh lịch</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab-2" role="tab">HandBag</a>
+                                <a  data-toggle="tab" href="#tab-2" role="tab" onclick="getStyle('2')" name="tab">Dễ thương</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab-3" role="tab">Shoes</a>
+                                <a data-toggle="tab" href="#tab-3" role="tab" onclick="getStyle('3')" name="tab">Thoải mái</a>
                             </li>
                             <li>
-                                <a data-toggle="tab" href="#tab-4" role="tab">Accessories</a>
+                                <a data-toggle="tab" href="#tab-4" role="tab" onclick="getStyle('4')" name="tab">Gợi cảm</a>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-item-content">
                         <div class="tab-content">
                             <div class="tab-pane fade-in active" id="tab-1" role="tabpanel">
-                                <div class="product-slider owl-carousel"> <!--Tab-content-->
-                                    <div class="product-item"> <!--Tab-pane-->
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-1.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-2.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            	<div class="owl-carousel product-slider"> 
+                            	 	<div th:each="itemp : ${styleList1}">
+                            	 		<div class="product-item ">
+					                        <div class="pi-pic">
+					                            <img th:src="@{|/img/products-main/${itemp.product.mainproductimage}.jpg|}" alt="">
+					                            <div class="sale">Sale</div>
+					                            <div class="icon">
+					                                <i class="icon_heart_alt"></i>
+					                            </div>
+					                            <ul>
+					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp.product.productid}|}">+ Quick View</a></li>
+					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+					                            </ul>
+					                        </div>
+					                        <div class="pi-text">
+					                            <div class="catagory-name">[[${itemp.product.category.categoryname}]]</div>
+					                            <a href="#">
+					                                <h5> [[${itemp.product.productname}]] </h5>
+					                            </a>
+					                            <div class="product-price">
+					                                $[[${itemp.product.sellingprice}]]
+					                                <span>$[[${itemp.product.listedprice}]]</span>
+					                            </div>
+					                        </div>
+					                  </div>
+                            	 	</div>  
+                                 </div>
                             </div>
+                            
                             <div class="tab-pane fade" id="tab-2" role="tabpanel">
                                 <div class="product-slider owl-carousel"> <!--Tab-content-->
-                                    <div class="product-item"> <!--Tab-pane-->
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-1.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-2.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
+                              		<div th:each="itemp2 : ${styleList2}">
+                            	 		<div class="product-item ">
+					                        <div class="pi-pic">
+					                            <img th:src="@{|/img/products-main/${itemp2.product.mainproductimage}.jpg|}" alt="">
+					                            <div class="sale">Sale</div>
+					                            <div class="icon">
+					                                <i class="icon_heart_alt"></i>
+					                            </div>
+					                            <ul>
+					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp2.product.productid}|}">+ Quick View</a></li>
+					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+					                            </ul>
+					                        </div>
+					                        <div class="pi-text">
+					                            <div class="catagory-name">[[${itemp2.product.category.categoryname}]]</div>
+					                            <a href="#">
+					                                <h5> [[${itemp2.product.productname}]] </h5>
+					                            </a>
+					                            <div class="product-price">
+					                                $[[${itemp2.product.sellingprice}]]
+					                                <span>$[[${itemp2.product.listedprice}]]</span>
+					                            </div>
+					                        </div>
+					                  </div>
+                            	 	</div> 
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                 <div class="product-slider owl-carousel"> <!--Tab-content-->
-                                    <div class="product-item"> <!--Tab-pane-->
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-1.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-2.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div th:each="itemp3 : ${styleList3}">
+                            	 		<div class="product-item ">
+					                        <div class="pi-pic">
+					                            <img th:src="@{|/img/products-main/${itemp3.product.mainproductimage}.jpg|}" alt="">
+					                            <div class="sale">Sale</div>
+					                            <div class="icon">
+					                                <i class="icon_heart_alt"></i>
+					                            </div>
+					                            <ul>
+					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp3.product.productid}|}">+ Quick View</a></li>
+					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+					                            </ul>
+					                        </div>
+					                        <div class="pi-text">
+					                            <div class="catagory-name">[[${itemp3.product.category.categoryname}]]</div>
+					                            <a href="#">
+					                                <h5> [[${itemp3.product.productname}]] </h5>
+					                            </a>
+					                            <div class="product-price">
+					                                $[[${itemp3.product.sellingprice}]]
+					                                <span>$[[${itemp3.product.listedprice}]]</span>
+					                            </div>
+					                        </div>
+					                  </div>
+                            	 	</div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tab-4" role="tabpanel">
                                 <div class="product-slider owl-carousel"> <!--Tab-content-->
-                                    <div class="product-item"> <!--Tab-pane-->
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-1.jpg" alt="">
-                                            <div class="sale">Sale</div>
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Coat</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $14.00
-                                                <span>$35.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-2.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Shoes</div>
-                                            <a href="#">
-                                                <h5>Guangzhou sweater</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $13.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-3.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Pure Pineapple</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-item">
-                                        <div class="pi-pic">
-                                            <img src="img/products/women-4.jpg" alt="">
-                                            <div class="icon">
-                                                <i class="icon_heart_alt"></i>
-                                            </div>
-                                            <ul>
-                                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="pi-text">
-                                            <div class="catagory-name">Towel</div>
-                                            <a href="#">
-                                                <h5>Converse Shoes</h5>
-                                            </a>
-                                            <div class="product-price">
-                                                $34.00
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div th:each="itemp4 : ${styleList4}">
+                            	 		<div class="product-item ">
+					                        <div class="pi-pic">
+					                            <img th:src="@{|/img/products-main/${itemp4.product.mainproductimage}.jpg|}" alt="">
+					                            <div class="sale">Sale</div>
+					                            <div class="icon">
+					                                <i class="icon_heart_alt"></i>
+					                            </div>
+					                            <ul>
+					                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+					                                <li class="quick-view"><a th:href="@{|/product/detail/${itemp4.product.productid}|}">+ Quick View</a></li>
+					                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+					                            </ul>
+					                        </div>
+					                        <div class="pi-text">
+					                            <div class="catagory-name">[[${itemp4.product.category.categoryname}]]</div>
+					                            <a href="#">
+					                                <h5> [[${itemp4.product.productname}]] </h5>
+					                            </a>
+					                            <div class="product-price">
+					                                $[[${itemp4.product.sellingprice}]]
+					                                <span>$[[${itemp4.product.listedprice}]]</span>
+					                            </div>
+					                        </div>
+					                  </div>
+                            	 	</div>
                                 </div>
                             </div>
                         </div>

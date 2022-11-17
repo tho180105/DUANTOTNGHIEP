@@ -13,16 +13,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 
 import store.com.DAO.AdditionalImagesDAO;
 import store.com.DAO.CategoryDAO;
 import store.com.DAO.ProductDAO;
+import store.com.DAO.RateDAO;
 import store.com.Entity.AdditionalImages;
 import store.com.Entity.Product;
+import store.com.Entity.Rate;
 import store.com.Service.SessionService;
 
 
@@ -42,6 +43,9 @@ public class ProductController {
 	
 	@Autowired
 	SessionService service;
+	
+	@Autowired
+	RateDAO rateDAO;
 	
 	String minPrice;
 	String maxPrice;
@@ -107,6 +111,12 @@ public class ProductController {
 		return "product/list";
 	}
 	
+	@RequestMapping("/product/list2")
+    public String list1(Model model) {
+        
+        return "product/list2";
+    }
+	
 
 	@RequestMapping("/product/list/xtype")
     public String test(Model model,@RequestParam(value = "min", required = false) String min, @RequestParam(value= "max", required = false) String max
@@ -141,6 +151,12 @@ public class ProductController {
 		
 		List<AdditionalImages> listimage = imageDAO.findByImagePath(product.getProductid());
 		model.addAttribute("listimage", listimage);
+		
+		Integer quantityComment = productDAO.countCommentProduct(productid);
+		model.addAttribute("qtyComment", quantityComment);
+		
+		List<Rate> listRate = rateDAO.findTop5ByProduct(productid);
+		model.addAttribute("listRate", listRate);
 		
 		return "product/detail";
 	}

@@ -37,7 +37,8 @@ app.controller("banner-ctrl", function($http, $scope) {
 		$scope.form = {
 			productid: '',
 			startdate: new Date(),
-			enddate : new Date()
+			enddate : new Date(),
+			bannerpath: null
 		}
 	}
     
@@ -83,6 +84,18 @@ app.controller("banner-ctrl", function($http, $scope) {
 	
 	//Delete
 	$scope.delete = function(item) {
+		$http.delete(`/rest/banner/${item.bannerid}`).then(resp => {
+			var index = $scope.itemsall.findIndex(p => p.bannerid == item.bannerid);
+			$scope.itemsall.splice(index,1);
+			$scope.reset();
+			alert("Delete thành công");
+		}).catch(error => {
+			alert("Delete thất bại");
+			console.log('Error', error);
+		});
+	}
+	
+	$scope.deleteall = function(item) {
 		$http.delete(`/rest/banner/${item.bannerid}`).then(resp => {
 			var index = $scope.items.findIndex(p => p.bannerid == item.bannerid);
 			$scope.items.splice(index,1);

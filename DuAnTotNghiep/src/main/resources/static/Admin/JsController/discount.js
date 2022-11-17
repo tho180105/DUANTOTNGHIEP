@@ -98,7 +98,7 @@ app.controller("discount-ctrl", function($http, $scope) {
 			$scope.forms.startdate = angular.copy($scope.form.startdate);
 			$scope.forms.enddate = angular.copy($scope.form.enddate);
 			$scope.forms.discount = angular.copy($scope.form.discount);
-			$scope.forms.account = angular.copy($scope.form.account);
+			$scope.forms.account =  angular.copy($scope.form.account),
 			$scope.forms.product = {
 				productid: $scope.selected[i].productid,
 				productname: $scope.selected[i].productname,
@@ -111,6 +111,7 @@ app.controller("discount-ctrl", function($http, $scope) {
 				category: $scope.selected[i].category
 			};
 			console.log($scope.forms.product);
+			console.log($scope.forms.account);
 			
 			var item = angular.copy($scope.forms);
 			console.log(item);
@@ -128,7 +129,8 @@ app.controller("discount-ctrl", function($http, $scope) {
 		}
 		
 		alert("Thêm mới thành công");
-
+		$scope.changeModel = null;
+		$scope.itemsCategory = {};
 	}
 	
 	
@@ -157,6 +159,43 @@ app.controller("discount-ctrl", function($http, $scope) {
 			alert("Delete thất bại");
 			console.log("Error", error);
 		});
+	}
+	
+	$scope.pager = {
+		page : 0,
+		size : 10,
+		
+		get items() {
+			var start = this.page * this.size;
+			var end = start + this.size;
+			return $scope.items.slice(start, end);
+		},
+		
+		get count() {
+			return Math.ceil(1.0 * $scope.items.length / this.size);
+		},
+		
+		first() {
+			this.page = 0;
+		},
+		
+		prev() {
+			this.page--;
+			if(this.page < 0) {
+				this.last();
+			}
+		},
+		
+		next() {
+			this.page++;
+			if(this.page >= this.count){
+				this.first();
+			}
+		},
+		
+		last(){
+			this.page = this.count - 1;
+		}
 	}
 	
 });
