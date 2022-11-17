@@ -69,4 +69,9 @@ public class CategoryRestController {
 //        categoryService.delete(key);
 //        return "redirect:thi/index";
 //    }
+    
+    @GetMapping("/rest/categoryfindAll")
+    public List<Category> findAllCate(){
+        return categoryDAO.findAll();
+    }
 }

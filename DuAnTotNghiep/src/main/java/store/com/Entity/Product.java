@@ -47,10 +47,7 @@ public class Product implements Serializable{
 	@OneToMany(mappedBy = "product")
 	List<ProductRepository> productRepositories;
 	@JsonIgnore
-	@OneToMany(mappedBy = "product",
-	        orphanRemoval = true,
-            cascade = CascadeType.ALL
-	        )
+	@OneToMany(mappedBy = "product")
 	List<ProductDiscount> productDiscounts;
 	@JsonIgnore
 	@OneToMany(mappedBy = "product")

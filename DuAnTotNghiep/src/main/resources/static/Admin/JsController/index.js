@@ -42,6 +42,11 @@ app.config(function($routeProvider) {
 			templateUrl: "/Admin/QuanLyBanner.html",
 			controller: "banner-ctrl"
 		})
+		
+		.when("/QuanLyVoucher", {
+			templateUrl: "/Admin/QuanLyVoucher.html",
+			controller: "vouchers-ctrl"
+		})
 
 		.when("/MyProfile", {
 			templateUrl: "./index2.html"
