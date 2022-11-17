@@ -26,9 +26,9 @@ app.controller("account-ctrl", function ($timeout, $rootScope, $scope, $http) {
 	$scope.reset = function () {
 		$scope.acc.avatar = "1.png";
 	}
-	
+
 	$scope.checkPhoneNull = function (phone) {
-		if ($scope.acc.phonenumber == null || $scope.acc.phonenumber == "" ) {
+		if ($scope.acc.phonenumber == null || $scope.acc.phonenumber == "") {
 			$scope.phonenumberCurrent = "0327987350";
 			parentPhone.removeChild(child);
 			console.log(parentPhone);
@@ -74,31 +74,41 @@ app.controller("account-ctrl", function ($timeout, $rootScope, $scope, $http) {
 
 	}
 
+	//đổi tên
+	$scope.changeName = function () {
+		$scope.acc.name = $scope.nameNew;
+		var item = $scope.acc;
+		$http.put("/rest/account", item).then(resp => {
+			$scope.resultName = "Đổi tên thành công !";
+		}).catch(error => {
+			console.log(error)
+		})
+	}
 
 	// đổi sdt
 	$scope.changePhone = function () {
 		var vnf_regex = /((09|03|07|08|05)+([0-9]{8})\b)/g;
 		var vnf_regex1 = /((09|03|07|08|05)+([0-9]{8})\b)/g;
-		$scope.resultPhone =null;
-		if (vnf_regex.test($scope.phonenumberCurrent)==false) {
+		$scope.resultPhone = null;
+		if (vnf_regex.test($scope.phonenumberCurrent) == false) {
 			console.log($scope.phonenumberCurrent);
 			$scope.checkPhoneCurrent = "Số điện thoại không đúng định dạng!";
-		}else{
-			$scope.checkPhoneCurrent= null;
+		} else {
+			$scope.checkPhoneCurrent = null;
 		}
-		if (vnf_regex1.test($scope.phonenumberNew)==false) {
+		if (vnf_regex1.test($scope.phonenumberNew) == false) {
 			console.log($scope.phonenumberNew);
 			$scope.checkPhoneNew = "Số điện thoại không đúng định dạng!";
-		}else{
+		} else {
 			$scope.checkPhoneNew = null;
 		}
 		if ($scope.checkPhoneCurrent != null || $scope.checkPhoneNew != null) {
 			return;
 		}
-		
+
 		if ($scope.acc.phonenumber == null) {
-			for(let i =0; i<$scope.listAcc.length; i++){
-				if($scope.listAcc[i].phonenumber == $scope.phonenumberNew){
+			for (let i = 0; i < $scope.listAcc.length; i++) {
+				if ($scope.listAcc[i].phonenumber == $scope.phonenumberNew) {
 					$scope.checkPhoneNew = "Số điện thoại đã tồn tại!";
 					return;
 				}
@@ -118,8 +128,8 @@ app.controller("account-ctrl", function ($timeout, $rootScope, $scope, $http) {
 			})
 		}
 		else if ($scope.phonenumberCurrent == $scope.acc.phonenumber) {
-			for(let i =0; i<$scope.listAcc.length; i++){
-				if($scope.listAcc[i].phonenumber == $scope.phonenumberNew){
+			for (let i = 0; i < $scope.listAcc.length; i++) {
+				if ($scope.listAcc[i].phonenumber == $scope.phonenumberNew) {
 					$scope.checkPhoneNew = "Số điện thoại đã tồn tại!";
 					return;
 				}
@@ -147,23 +157,23 @@ app.controller("account-ctrl", function ($timeout, $rootScope, $scope, $http) {
 	$scope.changeEmail = function () {
 		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 		var filter1 = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-		$scope.resultEmail =null;
-		if (filter.test($scope.emailCurrent)==false) {
+		$scope.resultEmail = null;
+		if (filter.test($scope.emailCurrent) == false) {
 			$scope.checkEmailCurrent = "Email không đúng định dạng!";
-		}else{
-			$scope.checkEmailCurrent= null;
+		} else {
+			$scope.checkEmailCurrent = null;
 		}
-		if (filter1.test($scope.emailNew)==false) {
+		if (filter1.test($scope.emailNew) == false) {
 			$scope.checkEmailNew = "Email không đúng định dạng!";
-		}else{
+		} else {
 			$scope.checkEmailNew = null;
 		}
 		if ($scope.checkEmailCurrent != null || $scope.checkEmailNew != null) {
 			return;
 		}
 		if ($scope.emailCurrent == $scope.acc.email) {
-			for(let i =0; i<$scope.listAcc.length; i++){
-				if($scope.listAcc[i].email == $scope.emailNew){
+			for (let i = 0; i < $scope.listAcc.length; i++) {
+				if ($scope.listAcc[i].email == $scope.emailNew) {
 					$scope.checkEmailNew = "Email đã tồn tại!";
 					return;
 				}
@@ -241,19 +251,19 @@ app.controller("account-ctrl", function ($timeout, $rootScope, $scope, $http) {
 		})
 	}
 
-	$scope.updateListAcc = function(acc){
-		for(let i =0; i<$scope.listAcc.length; i++){
-			if($scope.listAcc[i].accountid == acc.accountid){
+	$scope.updateListAcc = function (acc) {
+		for (let i = 0; i < $scope.listAcc.length; i++) {
+			if ($scope.listAcc[i].accountid == acc.accountid) {
 				$scope.listAcc[i] = acc;
 				return;
 			}
 		}
 	}
 
-	$scope.close = function(){
+	$scope.close = function () {
 		$scope.checkEmailCurrent = null;
 		$scope.checkEmailNew = null;
-		$scope.resultEmail =null;	
+		$scope.resultEmail = null;
 		$scope.emailCurrent = null;
 		$scope.emailNew = null;
 	}

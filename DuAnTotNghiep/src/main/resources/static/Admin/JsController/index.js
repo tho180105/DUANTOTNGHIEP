@@ -55,6 +55,13 @@ app.config(function($routeProvider) {
 		.when("/cart/order", {
 			templateUrl: "./cart/order.html"
 		})
+		.when("/Authority", {
+			templateUrl: "/Admin/Authority.html",
+			controller: "Authority-ctrl"
+		})
+		.when("/unauthorized", {
+			templateUrl: "/Admin/Unauthorized.html",
+		})
 		.otherwise({
 			redirectTo: "/main"
 		})
