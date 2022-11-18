@@ -33,19 +33,30 @@
 					</div>
 					<div class="col-lg-9">
 						<div class="row">
-							<div class="col-lg-6 swiper">
+							<!-- <div class="col-lg-6 swiper">
 								<div class="swiper-wrapper">
 									<div class="swiper-slide" th:each="i :${listimage}">
-										<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}"
-											alt="" class="SmallProductImg">
+										<img th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt="" class="SmallProductImg">
 									</div>
-									<!--               <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="" id="ProductImg">  -->
 								</div>
-								<!-- If we need pagination -->
 								<div class="swiper-pagination"></div>
-
-
-							</div>
+							</div> -->
+							<div class="col-lg-6">
+	                            <div class="product-pic-zoom">
+	                                <img class="product-big-img" th:src="@{|/img/products-main/${item.mainproductimage}.jpg|}" alt="">
+	                                <div class="zoom-icon">
+	                                    <i class="fa fa-search-plus"></i>
+	                                </div>
+	                            </div>
+	                            <div class="product-thumbs">
+	                                <div class="product-thumbs-track ps-slider owl-carousel">
+	                                    <div th:each="i :${listimage}">
+	                                    	<div class="pt" th:attr="data-imgbigurl='/img/products-main/'+${i.imagepath}+'.jpg'"><img
+	                                            th:src="@{|/img/products-main/${i.imagepath}.jpg|}" alt=""></div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
 							<div class="col-lg-6">
 								<div class="product-details">
 									<div class="pd-title">
@@ -90,8 +101,12 @@
 												style="width: 100%; padding: 0; margin: 0; font-size: 18px" />
 										</div>
 										<!-- <a th:href="@{|/cart/${item.productid}|}" class="primary-btn pd-cart" disabled="disabled" ng-disabled="check">Add To Cart</a>-->
+										<!-- <button class="primary-btn pd-cart" style="border: none"
+											ng-disabled="check" th:onclick="|window.location.href='/cart/'+${item.productid}|">Add To Cart
+										</button> -->
 										<button class="primary-btn pd-cart" style="border: none"
-											ng-disabled="check">Add To Cart</button>
+											ng-disabled="check" ng-click="SubmitAddToCart()">Add To Cart
+										</button>
 									</div>
 
 								</div>
@@ -100,12 +115,9 @@
 						<div class="product-tab">
 							<div class="tab-item">
 								<ul class="nav" role="tablist">
-									<li><a class="active" data-toggle="tab" href="#tab-1"
-										role="tab">MÔ TẢ</a></li>
-									<li><a data-toggle="tab" href="#tab-2" role="tab">THÔNG
-											SỐ</a></li>
-									<li><a data-toggle="tab" href="#tab-3" role="tab">BÌNH
-											LUẬN</a></li>
+									<li><a class="active" data-toggle="tab" href="#tab-1" role="tab">MÔ TẢ SẢN PHẨM</a></li>
+									<li><a data-toggle="tab" href="#tab-2" role="tab">THÔNG SỐ</a></li>
+									<li><a data-toggle="tab" href="#tab-3" role="tab">ĐÁNH GIÁ KHÁCH HÀNG</a></li>
 								</ul>
 							</div>
 							<div class="tab-item-content">
@@ -225,14 +237,7 @@
 														</h5>
 														<div class="at-reply">[[${rate.content}]] !</div>
 													</div>
-
 												</div>
-												<a href="#" class="sendComment">Phản hồi bình luận</a>
-												<!--     <div class="Reply-item">
-								                <h5>Admin - <span>20/11/2002</span></h5>
-								                <textarea rows="3" cols="10" placeholder="Sản phẩm tốt đẹp" class="textreply"></textarea>
-								                <button class="submitreply">PHẢN HỒI</button>
-								            </div> -->
 											</div>
 											<a href="#">Hiển thị tất cả bình luận</a>
 
