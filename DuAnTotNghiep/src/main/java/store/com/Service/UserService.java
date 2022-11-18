@@ -27,7 +27,7 @@ public class UserService implements UserDetailsService{
 			String role = account.getRole().getRoleid();
 			return User.withUsername(username).password(password).roles(role).build();
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 			throw new UsernameNotFoundException(username+" not found");
 		}
 	}
