@@ -108,6 +108,17 @@ app.controller("checksize-ctrl", function($http, $scope){
 		})
         
 	}
+	
+	//Submit Add to Cart
+	$scope.SubmitAddToCart = function() {
+		var x = location.href;
+		var item = Number(x.slice(x.lastIndexOf('/')+1, x.length));
+		if($scope.sizeName == ''){
+			$scope.message = 'Vui lòng chọn Size bạn mong muốn';
+			return;
+		}
+		window.location.href='/cart/'+item;
+	}
 });
  
  
