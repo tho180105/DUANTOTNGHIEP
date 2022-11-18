@@ -148,6 +148,7 @@ public class ProductController {
 		
 		Product product = productDAO.findById(productid).get();
 		model.addAttribute("item", product);
+		System.out.println(product.getMainproductimage());
 		
 		List<AdditionalImages> listimage = imageDAO.findByImagePath(product.getProductid());
 		model.addAttribute("listimage", listimage);

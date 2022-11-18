@@ -1051,6 +1051,7 @@ ol {
 .filter-control ul li {
 	list-style: none;
 	display: inline-block;
+	font-family: "Muli", sans-serif;
 }
 
 .filter-control ul li a{
@@ -1060,6 +1061,7 @@ ol {
 	position: relative;
 	cursor: pointer;
 	font-weight: bold;
+	font-family: "Muli", sans-serif;
 }
 
 .filter-control ul li a.active {
@@ -2106,7 +2108,11 @@ ol {
 
 .ps-slider .owl-nav button[type=button].owl-next {
 	left: auto;
-	right: -16px;
+	right: -35px;
+}
+
+.ps-slider .owl-nav button[type=button].owl-prev {
+	left: -35px;
 }
 
 .product-details .pd-title {
